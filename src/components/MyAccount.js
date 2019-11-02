@@ -59,6 +59,7 @@ export default class MyAccount extends Component {
   setData = (data) => {
     this.setState({loaded: true});
     if(data != null) {
+      document.querySelector('.user_profile_2').style.display = "block";
       document.querySelector(".more_info").innerHTML += `
         <h5>Certifications: ${data.certifications}</h5>
         <h5>Qualifications: ${data.qualifications}</h5>
@@ -83,7 +84,7 @@ export default class MyAccount extends Component {
             </div>
             <button onClick={this.logOut} className="btn btn-danger" style={{width: "100%", marginTop: "10px"}}>Log Out</button>
           </div>
-          <div className="user_profile_2">
+          <div className="user_profile_2" style={{display: "none"}}>
             <center><h2>Latest Tests</h2></center>
             <hr />
             <Link to={'/'}>
