@@ -7,7 +7,8 @@ export default class LoginWithUsername extends Component {
     super(props);
 
     this.state = {
-        users: []
+        users: [],
+        disabled: "disabled"
     }
   }
 
@@ -18,7 +19,8 @@ export default class LoginWithUsername extends Component {
       fetch('https://simpleosbackend.herokuapp.com/users')
       .then(res => res.json())
       .then(data => {
-        this.setState({users: data})
+        this.setState({users: data});
+        this.setState({disabled: ""})
       })
       .catch(err => console.log(err));
   }
@@ -29,7 +31,7 @@ export default class LoginWithUsername extends Component {
     const password = document.getElementById('password').value;
     let correct = false;
     if(username.trim().length > 3 && password.trim().length > 3) {
-      this.state.users.map(user => {
+      this.state.users.forEach(user => {
         if(user.username === username && user.password === password) {
           correct = true;
         }
@@ -64,10 +66,10 @@ export default class LoginWithUsername extends Component {
           <form onSubmit={this.onSubmit}>
             <center><h1>Log In</h1></center>
             <h3>Username: </h3>
-            <input id="username" type="text" className="form-control" style={{marginBottom: 15}} />
+            <input disabled={this.state.disabled} id="username" type="text" className="form-control" style={{marginBottom: 15}} />
             <h3>Password: </h3>
-            <input id="password" type="password" className="form-control" style={{marginBottom: 15}} />
-            <input type="submit" className="btn btn-info" style={{width: "100%"}} />
+            <input disabled={this.state.disabled}  id="password" type="password" className="form-control" style={{marginBottom: 15}} />
+            <input disabled={this.state.disabled}  type="submit" className="btn btn-info" style={{width: "100%"}} />
             <br /><br />
             <Link to={"/signup"} className="create_account_link">
               You dosen't have an account? Click here!

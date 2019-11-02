@@ -15,18 +15,10 @@ export default class Login extends Component {
   }
 
   render() {
-    const responseFacebook = (response) => {
-      if(response.name) {
-        localStorage.setItem("username", response.name);
-        window.location.href = "/";
-      } else {
-
-      }
-    }
     const responseGoogle = (response) => {
       console.log(response);
       localStorage.setItem("username", response.w3.ig);
-      window.location.href = "/";
+      //window.location.href = "/";
     }
     return (
       <div className="login_content">

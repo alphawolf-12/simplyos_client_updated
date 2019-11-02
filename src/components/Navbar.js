@@ -67,7 +67,7 @@ export default class Navbar  extends Component {
             </Link>
           </div>
           <div className="navbar_right">
-            <a style={{transition: '0.5s', padding: '15px'}} id="no_rotate-text" className="navbar_toggle" onClick={this.make_navbar_visible} href="#">&#x2630;</a>
+            <a href="#" style={{transition: '0.5s', padding: '15px'}} id="no_rotate-text" className="navbar_toggle" onClick={this.make_navbar_visible}>&#x2630;</a>
             <div className="navbar_web">
               <Link to={'/'} className="web_link">
                 Home

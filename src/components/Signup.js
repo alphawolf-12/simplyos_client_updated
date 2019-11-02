@@ -5,14 +5,15 @@ export default class Signup extends Component {
         super(props);
 
         this.state = {
-            users: []
+            users: [],
+            disabled: "disabled"
         }
     }
 
     componentDidMount() {
         fetch('https://simpleosbackend.herokuapp.com/users')
         .then(res => res.json())
-        .then(data => this.setState({users: data}))
+        .then(data => this.setState({users: data, disabled: ""}))
         .catch(err => console.log(err));
     }
 
@@ -26,7 +27,7 @@ export default class Signup extends Component {
         const org = document.getElementById('organization').value;
         if(username.trim().length > 3 && password.trim().length > 3 &&  email.trim().length > 3 && qualifications.trim().length > 3 && cert.trim().length > 3 && org.trim().length > 3) {
             let checkAvaibility = true;
-            this.state.users.map(user => {
+            this.state.users.forEach(user => {
                 if(user.username === username) {
                     checkAvaibility = false;
                 }
@@ -66,21 +67,21 @@ export default class Signup extends Component {
                     <form onSubmit={this.onSubmit}>
                         <center style={{marginBottom: 15}}><h1>Sign Up</h1></center>
                         <h3>Username: </h3>
-                        <input id="username" type="text" className="form-control" style={{marginBottom: 15}} />
+                        <input disabled={this.state.disabled} id="username" type="text" className="form-control" style={{marginBottom: 15}} />
                         <h3>Email: </h3>
-                        <input id="email" type="email" className="form-control" style={{marginBottom: 15}} />
+                        <input disabled={this.state.disabled} id="email" type="email" className="form-control" style={{marginBottom: 15}} />
                         <h3>Password: </h3>
-                        <input id="password" type="password" className="form-control" style={{marginBottom: 15}} />
+                        <input disabled={this.state.disabled} id="password" type="password" className="form-control" style={{marginBottom: 15}} />
                         <h3>Certifications</h3>
-                        <textarea id="certifications" className="form-control" style={{marginBottom: 15}}></textarea>
+                        <textarea disabled={this.state.disabled} id="certifications" className="form-control" style={{marginBottom: 15}}></textarea>
                         <h3>Qualifications</h3>
-                        <textarea id="qualifications" className="form-control" style={{marginBottom: 15}}></textarea>
+                        <textarea disabled={this.state.disabled} id="qualifications" className="form-control" style={{marginBottom: 15}}></textarea>
                         <h3>Organization</h3>
-                        <input id="organization" type="text" className="form-control" style={{marginBottom: 15}} />
+                        <input disabled={this.state.disabled} id="organization" type="text" className="form-control" style={{marginBottom: 15}} />
                         <div className="myAlert">
                             <h3 className="myAlertText">Every field should have at least 4 characters!</h3>
                         </div>
-                        <input type="submit" className="btn btn-info" style={{width: "100%", marginBottom: "30px"}} />
+                        <input disabled={this.state.disabled} type="submit" className="btn btn-info" style={{width: "100%", marginBottom: "30px"}} />
                     </form>
                 </div>
             </div>
