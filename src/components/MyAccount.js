@@ -74,7 +74,7 @@ export default class MyAccount extends Component {
   render() {
     return (
       <div>
-        <div className="user_profile" style={{marginTop: 130}}>
+        <div className="user_profile" style={{marginTop: 150}}>
           <div className="user_profile_1">
             <center><h2>User Information</h2></center>
             <hr />
