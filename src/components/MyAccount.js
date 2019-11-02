@@ -64,10 +64,11 @@ export default class MyAccount extends Component {
         <h5>Qualifications: ${data.qualifications}</h5>
         <h5>Organization: ${data.organization}</h5>
       `;
-
+      alert(1);
     } else {
       document.querySelector('.user_profile_3').style.display = "block";
       document.querySelector('.user_profile_2').style.display = "none";
+      alert(2)
     }
   }
 
