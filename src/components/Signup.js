@@ -10,7 +10,7 @@ export default class Signup extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:5000/users')
+        fetch('https://simpleosbackend.herokuapp.com/users')
         .then(res => res.json())
         .then(data => this.setState({users: data}))
         .catch(err => console.log(err));
@@ -33,7 +33,7 @@ export default class Signup extends Component {
             });
             if(checkAvaibility) {
                 this.showAlert("Creating the user!")
-                fetch(`http://localhost:5000/users/${username}/${password}/${email}/${cert}/${qualifications}/${org}`, {
+                fetch(`https://simpleosbackend.herokuapp.com/users/${username}/${password}/${email}/${cert}/${qualifications}/${org}`, {
                     method: "POST"
                 })
                 .then(res => this.afterCreated(username))
