@@ -18,7 +18,8 @@ export default class Login extends Component {
     const responseGoogle = (response) => {
       console.log(response);
       localStorage.setItem("username", response.w3.ig);
-      //window.location.href = "/";
+      localStorage.getItem("email", response.w3.U3);
+      window.location.href = "/";
     }
     return (
       <div className="login_content">

@@ -8,6 +8,7 @@ export default class MyAccount extends Component {
 
     this.state = {
       username: localStorage.getItem('username'),
+      email: localStorage.getItem("email") || 'guest@guest.com',
       loaded: false
     }
   }
@@ -18,7 +19,7 @@ export default class MyAccount extends Component {
     const qualifications = document.getElementById('qualifications').value;
     const org = document.getElementById('organization').value;
     if(qualifications.trim().length > 3 && cert.trim().length > 3 && org.trim().length > 3) {
-      fetch(`https://simpleosbackend.herokuapp.com/users/${this.state.username}/1/1/${cert}/${qualifications}/${org}`, {
+      fetch(`https://simpleosbackend.herokuapp.com/users/${this.state.username}/0/${this.state.email}/${cert}/${qualifications}/${org}`, {
         method: "POST"
     })
     .then(res => this.afterCreated())
