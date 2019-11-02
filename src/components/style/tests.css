@@ -1,0 +1,19 @@
+.test {
+  background: #c5c0ca;
+  border-radius: 10px;
+  margin-top: 10px;
+  transition: 0.5s;
+}
+
+.test h2 {
+  padding: 40px;
+  color: black;
+}
+
+.test h2:hover {
+  color: white;
+}
+
+.test:hover {
+  background: #8a868d;
+}

@@ -1,0 +1,52 @@
+.login_content {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  width: 300px;
+  margin: auto;
+}
+
+.btnBlue {
+  width: 300px;
+  background:  #3b5998;
+  color: white !important;
+  border: 0px;
+  padding: 7px;
+}
+
+.btnRed {
+  width: 300px;
+  background:  darkred;
+  color: white !important;
+  border: 0px;
+  padding: 7px;
+}
+
+.myAlert {
+  background: darkred;
+  color: white;
+  padding: 20px;
+  border-radius: 25px;
+  margin: 10px;
+  text-align: center;
+  display: none;
+}
+
+.myAlert h3 {
+  font-size: 20px;
+}
+
+.create_account_link {
+  color: black;
+  transition: 0.5s;
+}
+
+.create_account_link:hover {
+  color: gray !important;
+}
+
+.form-control {
+  outline: none !important;
+}
