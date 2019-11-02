@@ -61,9 +61,9 @@ export default class MyAccount extends Component {
     if(data != null) {
       document.querySelector('.user_profile_2').style.display = "block";
       document.querySelector(".more_info").innerHTML += `
-        <h5>Certifications: ${data.certifications}</h5>
-        <h5>Qualifications: ${data.qualifications}</h5>
-        <h5>Organization: ${data.organization}</h5>
+        <h5><strong>Certifications:</strong>  ${data.certifications}</h5>
+        <h5><strong>Qualifications:</strong>  ${data.qualifications}</h5>
+        <h5><strong>Organization:</strong> ${data.organization}</h5>
       `;
     } else {
       document.querySelector('.user_profile_3').style.display = "block";
@@ -78,7 +78,7 @@ export default class MyAccount extends Component {
           <div className="user_profile_1">
             <center><h2>User Information</h2></center>
             <hr />
-            <h5 style={{marginTop: "10px"}}>Username: {this.state.username}</h5>
+            <h5 style={{marginTop: "10px"}}><strong>Username:</strong> {this.state.username}</h5>
             <div className="more_info">
 
             </div>
