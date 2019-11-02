@@ -45,7 +45,7 @@ export default class MyAccount extends Component {
     if(!localStorage.getItem('username')) {
       window.location.href = '/';
     }
-    fetch(`http://simpleosbackend.herokuapp.com/users/${this.state.username}`)
+    fetch(`https://simpleosbackend.herokuapp.com/users/${this.state.username}`)
     .then(res => res.json())
     .then(data => this.setData(data))
     .catch(err => console.log(err));
@@ -64,11 +64,9 @@ export default class MyAccount extends Component {
         <h5>Qualifications: ${data.qualifications}</h5>
         <h5>Organization: ${data.organization}</h5>
       `;
-      alert(1);
     } else {
       document.querySelector('.user_profile_3').style.display = "block";
       document.querySelector('.user_profile_2').style.display = "none";
-      alert(2)
     }
   }
 
