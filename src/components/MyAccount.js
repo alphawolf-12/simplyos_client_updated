@@ -9,7 +9,9 @@ export default class MyAccount extends Component {
     this.state = {
       username: localStorage.getItem('username'),
       email: localStorage.getItem("email") || 'guest@guest.com',
-      loaded: false
+      loaded: false,
+      tests: [],
+      testsTitles: [] 
     }
   }
 
@@ -47,8 +49,25 @@ export default class MyAccount extends Component {
     }
     fetch(`https://simpleosbackend.herokuapp.com/users/${this.state.username}`)
     .then(res => res.json())
-    .then(data => this.setData(data))
+    .then(data => {
+      this.setState({tests: data.tests}, () => {
+        this.uploadTests();
+      })
+      this.setData(data)})
     .catch(err => console.log(err));
+  }
+
+  uploadTests = () => {
+    console.log(this.state.tests)
+    this.state.tests.forEach(test => {
+      fetch(`https://simpleosbackend.herokuapp.com/users/title/${test}`)
+      .then(res => res.json())
+      .then(data => {
+        let names = this.state.testsTitles;
+        names.push(data.title);
+        this.setState({testsTitles: names})
+      })
+    })
   }
 
   logOut = () => {
@@ -72,6 +91,13 @@ export default class MyAccount extends Component {
   }
 
   render() {
+    const output = this.state.testsTitles.map((test, i) => (
+      <Link to={`/test/${this.state.tests[i]}`}>
+          <div className="test">
+            <h2>{test}</h2>
+          </div>
+      </Link>
+    )) 
     return (
       <div>
         <div className="user_profile" style={{marginTop: 150}}>
@@ -80,38 +106,16 @@ export default class MyAccount extends Component {
             <hr />
             <h5 style={{marginTop: "10px"}}><strong>Username:</strong> {this.state.username}</h5>
             <div className="more_info">
-
             </div>
             <button onClick={this.logOut} className="btn btn-danger" style={{width: "100%", marginTop: "10px"}}>Log Out</button>
+            <br />
+            <br />
+            <br />
           </div>
           <div className="user_profile_2" style={{display: "none"}}>
             <center><h2>Latest Tests</h2></center>
             <hr />
-            <Link to={'/'}>
-                <div className="test">
-                  <h2>test1</h2>
-                </div>
-            </Link>
-            <Link to={'/'}>
-                <div className="test">
-                  <h2>test1</h2>
-                </div>
-            </Link>
-            <Link to={'/'}>
-                <div className="test">
-                  <h2>test1</h2>
-                </div>
-            </Link>
-            <Link to={'/'}>
-                <div className="test">
-                  <h2>test1</h2>
-                </div>
-            </Link>
-            <Link to={'/'}>
-                <div className="test">
-                  <h2>test1</h2>
-                </div>
-            </Link>
+            {output}
           </div>
           <div className="user_profile_3" style={{display: "none"}}>
             <center><h2>It looks like something is missing! Plese fill all the fields!</h2></center>
