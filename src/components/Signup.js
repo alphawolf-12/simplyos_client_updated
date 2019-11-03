@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet'
 
 export default class Signup extends Component {
     constructor(props) {
@@ -66,6 +67,9 @@ export default class Signup extends Component {
     render() {
         return(
             <div className="categories_list"> 
+                <Helmet>
+                    <title>{ 'Sign Up' }</title>
+                </Helmet>
                 <div className="container" style={{marginTop: "150px"}}>
                     <form onSubmit={this.onSubmit}>
                         <center style={{marginBottom: 15}}><h1>Sign Up</h1></center>

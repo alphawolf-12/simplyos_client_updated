@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GoogleLogin from 'react-google-login';
 import {Link} from 'react-router-dom';
 import './style/login.css';
+import { Helmet } from 'react-helmet'
 
 export default class Login extends Component {
   refresh = () => {
@@ -23,6 +24,9 @@ export default class Login extends Component {
     }
     return (
       <div className="login_content">
+        <Helmet>
+          <title>{ 'Login' }</title>
+        </Helmet>
          <Link to="/user/login" className="btnBlue">
            Login with your username
          </Link>

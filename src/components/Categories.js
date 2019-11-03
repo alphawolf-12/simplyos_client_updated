@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./style/categories.css";
 import {Link} from 'react-router-dom';
+import { Helmet } from 'react-helmet'
 
 export default class Categories extends Component {
   constructor(props) {
@@ -31,6 +32,9 @@ export default class Categories extends Component {
     ))
     return (
       <div className="categories_list">
+        <Helmet>
+          <title>{ 'Categories' }</title>
+        </Helmet>
         <div className="container" style={{marginTop: '15px'}}>
         <br /><br />
           <h1>Categories</h1>

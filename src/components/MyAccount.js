@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './style/myAccount.css';
 import {Link} from 'react-router-dom';
+import { Helmet } from 'react-helmet'
 
 export default class MyAccount extends Component {
   constructor(props) {
@@ -104,6 +105,9 @@ export default class MyAccount extends Component {
     )) 
     return (
       <div>
+        <Helmet>
+          <title>{ 'My Account' }</title>
+        </Helmet>
         <div className="user_profile" style={{marginTop: 150}}>
           <div className="user_profile_1">
             <center><h2>User Information</h2></center>

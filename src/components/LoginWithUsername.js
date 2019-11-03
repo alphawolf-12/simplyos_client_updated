@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import './style/login.css';
+import { Helmet } from 'react-helmet'
 
 export default class LoginWithUsername extends Component {
   constructor(props) {
@@ -62,6 +63,9 @@ export default class LoginWithUsername extends Component {
   render() {
     return (
       <div style={{marginTop: 150}}>
+        <Helmet>
+          <title>{ 'Login' }</title>
+        </Helmet>
         <div className="container">
           <form onSubmit={this.onSubmit}>
             <center><h1>Log In</h1></center>

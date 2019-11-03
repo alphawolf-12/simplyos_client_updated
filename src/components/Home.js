@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './style/home.css';
 import Img1 from '../images/img_1.jpg';
+import { Helmet } from 'react-helmet'
 
 export default class Home extends Component {
   openSearch = (e) => {
@@ -13,6 +14,9 @@ export default class Home extends Component {
   render() {
     return (
       <div className="home_content">
+        <Helmet>
+          <title>{ 'Home' }</title>
+        </Helmet>
         <div className="container_2">
           <img alt="Img" src={Img1} style={{width: "100%", height: "100%", backgroundSize: "cover", backgroundPosition: "center"}} />
         </div>

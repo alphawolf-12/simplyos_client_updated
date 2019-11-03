@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import './style/search.css';
+import { Helmet } from 'react-helmet'
 
 export default class Search extends Component {
   constructor(props) {
@@ -36,6 +37,9 @@ export default class Search extends Component {
     ))
     return (
       <div className="search_container">
+        <Helmet>
+          <title>{ 'Search' }</title>
+        </Helmet>
         <br /><br />
         <div id="lodaing_search" className="alert alert-success" style={{position: 'inherit', width: "80vw", margin: 'auto'}}>
           Loading...
