@@ -97,7 +97,7 @@ export default class MyAccount extends Component {
 
   render() {
     const output = this.state.testsTitles.map((test, i) => (
-      <Link to={`/test/${this.state.tests[i]}`}>
+      <Link to={`/test/${this.state.tests[i]}/${test}`}>
           <div className="test">
             <h2>{test}</h2>
           </div>
