@@ -63,7 +63,7 @@ export default class Navbar  extends Component {
         <div className="navbar">
           <div className="navbar_left">
             <Link to={'/'}>
-              <img alt="Sorry" src={Logo} style={{width: 90, marginLeft: 5}} />
+              <img alt="Sorry" src={Logo} style={{width: 80, marginLeft: 5}} />
             </Link>
           </div>
           <div className="navbar_right">

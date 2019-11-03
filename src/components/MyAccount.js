@@ -9,6 +9,7 @@ export default class MyAccount extends Component {
     this.state = {
       username: localStorage.getItem('username'),
       email: localStorage.getItem("email") || 'guest@guest.com',
+      
       loaded: false,
       tests: [],
       testsTitles: [] 
@@ -50,24 +51,28 @@ export default class MyAccount extends Component {
     fetch(`https://simpleosbackend.herokuapp.com/users/${this.state.username}`)
     .then(res => res.json())
     .then(data => {
-      this.setState({tests: data.tests}, () => {
-        this.uploadTests();
-      })
+      if(data != null) {
+        this.setState({tests: data.tests}, () => {
+          this.uploadTests();
+        })
+      }
       this.setData(data)})
     .catch(err => console.log(err));
   }
 
   uploadTests = () => {
-    console.log(this.state.tests)
-    this.state.tests.forEach(test => {
-      fetch(`https://simpleosbackend.herokuapp.com/users/title/${test}`)
-      .then(res => res.json())
-      .then(data => {
-        let names = this.state.testsTitles;
-        names.push(data.title);
-        this.setState({testsTitles: names})
+    if(this.state.tests.length > 0) {
+      document.querySelector('.user_profile_2').style.display = "block";
+      this.state.tests.forEach(test => {
+        fetch(`https://simpleosbackend.herokuapp.com/users/title/${test}`)
+        .then(res => res.json())
+        .then(data => {
+          let names = this.state.testsTitles;
+          names.push(data.title);
+          this.setState({testsTitles: names})
+        })
       })
-    })
+    }
   }
 
   logOut = () => {
@@ -78,7 +83,6 @@ export default class MyAccount extends Component {
   setData = (data) => {
     this.setState({loaded: true});
     if(data != null) {
-      document.querySelector('.user_profile_2').style.display = "block";
       document.querySelector(".more_info").innerHTML += `
         <h5><strong>Certifications:</strong>  ${data.certifications}</h5>
         <h5><strong>Qualifications:</strong>  ${data.qualifications}</h5>
@@ -107,13 +111,16 @@ export default class MyAccount extends Component {
             <h5 style={{marginTop: "10px"}}><strong>Username:</strong> {this.state.username}</h5>
             <div className="more_info">
             </div>
+            <Link to={'/update'}>
+              <button className="btn btn-info" style={{width: "100%", marginTop: "10px"}}>Update</button>
+            </Link>
             <button onClick={this.logOut} className="btn btn-danger" style={{width: "100%", marginTop: "10px"}}>Log Out</button>
             <br />
             <br />
             <br />
           </div>
           <div className="user_profile_2" style={{display: "none"}}>
-            <center><h2>Latest Tests</h2></center>
+            <center><h2>Finished</h2></center>
             <hr />
             {output}
           </div>

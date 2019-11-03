@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import './style/tests.css';
+import { Helmet } from 'react-helmet'
 
 export default class Tests extends Component {
   constructor(props) {
     super(props);
     this.state = {
       category_id: props.match.params.category_id,
+      category_name: props.match.params.category_name,
       tests: []
     }
   }
@@ -27,7 +29,7 @@ export default class Tests extends Component {
   }
   render() {
     const output = this.state.tests.map((test, i) => (
-      <Link to={'/test/' + test._id} id={i}>
+      <Link to={'/test/' + test._id + "/" + test.title} id={i}>
           <div className="test">
             <h2>{test.title}</h2>
           </div>
@@ -35,6 +37,9 @@ export default class Tests extends Component {
     ))
     return (
       <div>
+        <Helmet>
+          <title>{ this.state.category_name }</title>
+        </Helmet>
         <br /><br />
         <div className="categories_list">
           <div className="container">
@@ -46,6 +51,7 @@ export default class Tests extends Component {
             </div>
           </div>
         </div>
+        <br /><br />
       </div>
     );
   }

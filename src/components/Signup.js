@@ -11,6 +11,9 @@ export default class Signup extends Component {
     }
 
     componentDidMount() {
+        if(localStorage.getItem('username')) {
+            window.location.href = '/';
+        }
         fetch('https://simpleosbackend.herokuapp.com/users')
         .then(res => res.json())
         .then(data => this.setState({users: data, disabled: ""}))
@@ -43,7 +46,7 @@ export default class Signup extends Component {
                 this.showAlert("This username is taken, please choose another one!");
             }
         } else {
-            this.showAlert("Every field should have ate least 4 characters!");
+            this.showAlert("Every field should have at least 4 characters!");
         }
     }
 

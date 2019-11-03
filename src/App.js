@@ -10,6 +10,7 @@ import Categories from './components/Categories';
 import Tests from './components/Tests';
 import Test from './components/Test';
 import Signup from './components/Signup';
+import Update from './components/Update';
 import './App.css';
 
 class App extends Component {
@@ -22,12 +23,13 @@ class App extends Component {
             <Route path="/" exact component={Home} />
             <Route path="/login" exact component={Login} />
             <Route path="/categories" exact component={Categories} />
-            <Route path="/tests/:category_id" exact component={Tests} />
+            <Route path="/tests/:category_id/:category_name" exact component={Tests} />
             <Route path="/search/:text_query" exact component={Search} />
-            <Route path="/test/:test_id" exact component={Test} />
+            <Route path="/test/:test_id/:test_name" exact component={Test} />
             <Route path="/myaccount" exact component={MyAccount} />
             <Route path='/user/login' exact component={LoginWithUsername} />
             <Route path="/signup" exact component={Signup} />
+            <Route path="/update" exact component={Update} />
           </Switch>
         </div>
       </Router>
