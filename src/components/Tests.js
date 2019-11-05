@@ -29,7 +29,7 @@ export default class Tests extends Component {
   }
   render() {
     const output = this.state.tests.map((test, i) => (
-      <Link to={'/test/' + test._id + "/" + test.title} id={i}>
+      <Link to={'/test/' + test._id + "/" + test.title} key={i}>
           <div className="test">
             <h2>{test.title}</h2>
           </div>

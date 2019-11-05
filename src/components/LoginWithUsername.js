@@ -29,16 +29,18 @@ export default class LoginWithUsername extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const username = document.getElementById('username').value;
+    let user_id = '';
     const password = document.getElementById('password').value;
     let correct = false;
     if(username.trim().length > 3 && password.trim().length > 3) {
       this.state.users.forEach(user => {
         if(user.username === username && user.password === password) {
           correct = true;
+          user_id = user._id;
         }
       });
       if(correct) {
-        this.afterLogin(username);
+        this.afterLogin(username, user_id);
       } else {
         this.showAlert("Please enter a valid user!")
       }
@@ -47,8 +49,9 @@ export default class LoginWithUsername extends Component {
     }
   }
 
-  afterLogin = (username) => {
+  afterLogin = (username, id) => {
     localStorage.setItem("username", username);
+    localStorage.setItem("user_id", id);
     window.location.href = '/';
 }
 

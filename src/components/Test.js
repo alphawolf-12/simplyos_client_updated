@@ -180,7 +180,7 @@ export default class Test extends Component {
         </Helmet>
         <br /><br />
         <div className="container" style={{background: "#3b444b", padding: 30, borderRadius: 10, display: 'none'}}>
-          <Link to={'/reviews/' + this.state.test_id}>
+          <Link to={'/review/' + this.state.test_id}>
             <img alt="Ghey" style={{width: 30, float: 'right'}} src={star} />
           </Link>
           <div className="info">    

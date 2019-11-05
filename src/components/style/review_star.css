@@ -1,0 +1,14 @@
+.stars {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    width: 500px;
+    margin: auto;
+}
+
+@media(max-width: 500px) {
+    .stars {
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 300px;
+        text-align: center;  
+    }
+}
