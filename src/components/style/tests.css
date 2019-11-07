@@ -5,12 +5,12 @@
   transition: 0.5s;
 }
 
-.test h2 {
+.test {
   padding: 40px;
   color: black;
 }
 
-.test h2:hover {
+.test:hover {
   color: white;
 }
 

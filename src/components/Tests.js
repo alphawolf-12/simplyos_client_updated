@@ -28,13 +28,32 @@ export default class Tests extends Component {
     .catch(err => alert('Error Occured!'));
   }
   render() {
-    const output = this.state.tests.map((test, i) => (
-      <Link to={'/test/' + test._id + "/" + test.title} key={i}>
-          <div className="test">
-            <h2>{test.title}</h2>
-          </div>
-      </Link>
-    ))
+    const output = this.state.tests.map((test, i) => {
+      if(test.reviews_length) {
+        const stars = test.reviews_sum / test.reviews_length;
+        let output = '';
+        for(let i = 0; i < stars; i++) {
+          output += '⭐';
+        }
+        return (
+          <Link to={'/test/' + test._id + "/" + test.title} key={i}>
+            <div className="test">
+              <h5 style={{float: 'right'}}>{output}</h5>
+              <br />
+              <h2>{test.title}<br /></h2>
+            </div>
+          </Link>
+      )
+      } else {
+        return (
+          <Link to={'/test/' + test._id + "/" + test.title} key={i}>
+            <div className="test">
+              <h2>{test.title}</h2>
+            </div>
+          </Link>
+      )
+      }
+    })
     return (
       <div>
         <Helmet>

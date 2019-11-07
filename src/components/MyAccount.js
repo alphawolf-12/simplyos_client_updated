@@ -13,7 +13,8 @@ export default class MyAccount extends Component {
       
       loaded: false,
       tests: [],
-      testsTitles: [] 
+      testsTitles: [] ,
+      testsIds: []
     }
   }
 
@@ -69,8 +70,10 @@ export default class MyAccount extends Component {
         .then(res => res.json())
         .then(data => {
           let names = this.state.testsTitles;
+          let testsIds = this.state.testsIds;
           names.push(data.title);
-          this.setState({testsTitles: names})
+          testsIds.push(data.id);
+          this.setState({testsTitles: names, testsIds: testsIds})
         })
       })
     }
@@ -97,7 +100,7 @@ export default class MyAccount extends Component {
 
   render() {
     const output = this.state.testsTitles.map((test, i) => (
-      <Link to={`/test/${this.state.tests[i]}/${test}`}>
+      <Link to={`/test/${this.state.testsIds[i]}/${test}`}>
           <div className="test">
             <h2>{test}</h2>
           </div>
@@ -117,6 +120,9 @@ export default class MyAccount extends Component {
             </div>
             <Link to={'/update'}>
               <button className="btn btn-info" style={{width: "100%", marginTop: "10px"}}>Update</button>
+            </Link>
+            <Link to={'/reviews/' + localStorage.getItem('user_id')}>
+              <button className="btn btn-warning" style={{width: "100%", marginTop: "10px", color: 'white'}}>Check my reviews</button>
             </Link>
             <button onClick={this.logOut} className="btn btn-danger" style={{width: "100%", marginTop: "10px"}}>Log Out</button>
             <br />
@@ -148,6 +154,7 @@ export default class MyAccount extends Component {
             </form>
           </div>
         </div>
+        <br />
       </div>
     );
   }
