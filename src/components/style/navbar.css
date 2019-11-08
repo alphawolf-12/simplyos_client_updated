@@ -22,7 +22,7 @@
 .navbar_content {
   margin-left: -250px;
   transition: 0.5s;
-  position: fixed;
+  position: fixed !important;
   top: 0px;
   height: 100vh;
   background: #3b444b;

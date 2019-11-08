@@ -198,7 +198,7 @@ export default class Reivew extends Component {
                         </svg>
                     </div>
                     <br /><br />
-                    <button onClick={this.sendReview} id="submit_review" className="btn btn-info" style={{width: '80vw', marginLeft: '10vw'}}>Submit your review</button>
+                    <button onClick={this.sendReview} id="submit_review" className="btn btn-info" style={{width: '80vw', marginLeft: '10vw',}}>Submit your review</button>
                     <br /><br />
                     <center><h1>Your review: {this.state.rating}/5</h1></center>
                 </div>
@@ -207,7 +207,7 @@ export default class Reivew extends Component {
                 </div>
                 <div className="container">
                     <h5 style={{marginBottom: '20px'}}>Comments</h5>
-                    <ul class="list-group" id="comments_list">
+                    <ul class="my_llist" id="comments_list">
                         {output}
                     </ul>
                     <form style={{marginTop: '20px'}} onSubmit={this.addComment}>

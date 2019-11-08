@@ -27,7 +27,8 @@ export default class MyAccount extends Component {
       fetch(`https://simpleosbackend.herokuapp.com/users/${this.state.username}/0/${this.state.email}/${cert}/${qualifications}/${org}`, {
         method: "POST"
     })
-    .then(res => this.afterCreated())
+    .then(res => res.json())
+    .then(data => this.afterCreated(data))
     .catch(res => this.showAlert("Problems creating the user!"));
     } else {
         this.showAlert("Every field should have at least 4 characters!");
@@ -41,7 +42,9 @@ export default class MyAccount extends Component {
         document.querySelector('.myAlert').style.display = "none"; 
     }, 5000)
   }
-  afterCreated = () => {
+  afterCreated = (data) => {
+    localStorage.setItem('username', data.username);
+    localStorage.setItem('user_id', data._id);
     window.location.href = '/myaccount';
   }
 

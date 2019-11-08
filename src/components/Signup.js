@@ -41,7 +41,8 @@ export default class Signup extends Component {
                 fetch(`https://simpleosbackend.herokuapp.com/users/${username}/${password}/${email}/${cert}/${qualifications}/${org}`, {
                     method: "POST"
                 })
-                .then(res => this.afterCreated(username))
+                .then(res => res.json())
+                .then(data => this.afterCreated(data))
                 .catch(res => this.showAlert("Problems creating the user!"));
             } else {
                 this.showAlert("This username is taken, please choose another one!");
@@ -59,8 +60,9 @@ export default class Signup extends Component {
         }, 5000)
     }
 
-    afterCreated = (username) => {
-        localStorage.setItem("username", username);
+    afterCreated = (res) => {
+        localStorage.setItem("username", res.username);
+        localStorage.setItem('user_id', res._id);
         window.location.href = '/';
     }
 
