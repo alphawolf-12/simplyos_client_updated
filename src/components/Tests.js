@@ -45,12 +45,12 @@ export default class Tests extends Component {
               document.getElementById('info').style.display = "none";
             }
           })
-          .catch(err => alert('Error Occured!'));
+          .catch(err => console.log('Error Occured!'));
         })
-        .catch(err => alert('Error Occured!'));
+        .catch(err => console.log('Error Occured!'));
         }
     })
-    .catch(err => alert('Error Occured!'));
+    .catch(err => console.log('Error Occured!'));
   }
   render() {
     const output = this.state.tests.map((test, i) => {

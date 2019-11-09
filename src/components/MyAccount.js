@@ -53,16 +53,20 @@ export default class MyAccount extends Component {
     if(!localStorage.getItem('username')) {
       window.location.href = '/';
     }
-    fetch(`https://simpleosbackend.herokuapp.com/users/${localStorage.getItem('user_id')}`)
-    .then(res => res.json())
-    .then(data => {
-      if(data != null && data.tests != undefined) {
-        this.setState({tests: data.tests}, () => {
-          this.uploadTests();
-        })
-      }
-      this.setData(data)})
-    .catch(err => console.log(err));
+    if(localStorage.getItem('user_id')) {
+      fetch(`https://simpleosbackend.herokuapp.com/users/${localStorage.getItem('user_id')}`)
+      .then(res => res.json())
+      .then(data => {
+        if(data != null && data.tests != undefined) {
+          this.setState({tests: data.tests}, () => {
+            this.uploadTests();
+          })
+        }
+        this.setData(data)})
+      .catch(err => console.log(err));
+    } else {
+      document.querySelector('.user_profile_3').style.display = 'block';
+    }
   }
 
   uploadTests = () => {
@@ -84,6 +88,7 @@ export default class MyAccount extends Component {
 
   logOut = () => {
     localStorage.removeItem('username');
+    localStorage.removeItem('user_id');
     window.location.href = '/';
   }
 
