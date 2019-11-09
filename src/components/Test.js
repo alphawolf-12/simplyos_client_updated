@@ -28,7 +28,12 @@ export default class Test extends Component {
     selectDiv.innerHTML = '';
     const question = this.state.questions[i];
     const answer = this.state.answers[i];
-    const answers = answer.split(',');
+    let answers;
+    if(answer === null) {
+      answers = ['A'];
+    } else {
+      answers = answer.split(',');
+    }
     answers.forEach((answer, i) => {
       const select = document.createElement('select');
       select.className = 'custom-select';
