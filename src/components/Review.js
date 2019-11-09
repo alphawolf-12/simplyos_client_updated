@@ -60,7 +60,7 @@ export default class Reivew extends Component {
         if(!localStorage.getItem('username') || !localStorage.getItem('user_id')) {
             window.location.href = '/';
         }
-        fetch(`https://simpleosbackend.herokuapp.com/users/${localStorage.getItem('username')}`)
+        fetch(`https://simpleosbackend.herokuapp.com/users/${localStorage.getItem('user_id')}`)
         .then(res => res.json())
         .then(data => {
             if(data === null) {

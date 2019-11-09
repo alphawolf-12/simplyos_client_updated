@@ -38,7 +38,7 @@ export default class Signup extends Component {
             });
             if(checkAvaibility) {
                 this.showAlert("Creating the user!")
-                fetch(`https://simpleosbackend.herokuapp.com/users/${username}/${password}/${email}/${cert}/${qualifications}/${org}`, {
+                fetch(`https://simpleosbackend.herokuapp.com/users/${username}/${email}/${password}/${cert}/${qualifications}/${org}`, {
                     method: "POST"
                 })
                 .then(res => res.json())

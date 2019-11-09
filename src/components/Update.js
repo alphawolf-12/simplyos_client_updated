@@ -19,7 +19,7 @@ export default class Update extends Component {
         const org = document.getElementById('organization').value;
         if(username.trim().length > 3 && qualifications.trim().length > 3 && cert.trim().length > 3 && org.trim().length > 3) {
             this.showAlert("Updating...");
-            fetch(`https://simpleosbackend.herokuapp.com/users/update/${username}/${cert}/${qualifications}/${org}`, {
+            fetch(`https://simpleosbackend.herokuapp.com/users/update/${localStorage.getItem('user_id')}/${cert}/${qualifications}/${org}`, {
                 method: "Post"
             })
             .then(res => window.location.href = '/myaccount')
@@ -40,7 +40,7 @@ export default class Update extends Component {
         if(!localStorage.getItem('username')) {
           window.location.href = '/';
         }
-        fetch(`https://simpleosbackend.herokuapp.com/users/${this.state.username}`)
+        fetch(`https://simpleosbackend.herokuapp.com/users/${localStorage.getItem('user_id')}`)
         .then(res => res.json())
         .then(data => {
           const certifications = data.certifications;

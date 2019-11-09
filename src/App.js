@@ -11,7 +11,9 @@ import Tests from './components/Tests';
 import Test from './components/Test';
 import Signup from './components/Signup';
 import Update from './components/Update';
+import MyReviews from './components/MyReviews';
 import Review from './components/Review';
+import UpdateReview from './components/UpdateReview';
 import './App.css';
 
 class App extends Component {
@@ -32,6 +34,8 @@ class App extends Component {
             <Route path="/signup" exact component={Signup} />
             <Route path="/update" exact component={Update} />
             <Route path="/review/:post_id" exact component={Review} />
+            <Route path="/reviews/:user_id" exact component={MyReviews} />
+            <Route path="/reviews/update/:review_id" exact component={UpdateReview} />
           </Switch>
         </div>
       </Router>

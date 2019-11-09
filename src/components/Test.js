@@ -17,7 +17,9 @@ export default class Test extends Component {
       correctAnswers: 0,
       currentIndex: 0,
       username: localStorage.getItem('username') ? localStorage.getItem('username') : 'Guest',
-      timeLeft: 3600
+      timeLeft: 3600,
+      guest: localStorage.getItem('username') ? false : true,
+      starDisplay: localStorage.getItem('username') ? '1' : '0',
     }
   }
 
@@ -89,7 +91,7 @@ export default class Test extends Component {
           document.querySelector('.info').innerHTML = output;
           if(this.state.username !== "Guest") {
             //console.log(`https://simpleosbackend.herokuapp.com/users/addTest/${this.state.username}/${this.state.test_id}`)
-            fetch(`https://simpleosbackend.herokuapp.com/users/addTest/${this.state.username}/${this.state.test_id}`, {
+            fetch(`https://simpleosbackend.herokuapp.com/users/addTest/${localStorage.getItem('user_id')}/${this.state.test_id}`, {
               method: "Post"
             })
             .then(res => res.json());
@@ -102,7 +104,7 @@ export default class Test extends Component {
         document.querySelector('.info').innerHTML = output;
         if(this.state.username !== "Guest") {
           //console.log(`https://simpleosbackend.herokuapp.com/users/addTest/${this.state.username}/${this.state.test_id}`)
-          fetch(`https://simpleosbackend.herokuapp.com/users/addTest/${this.state.username}/${this.state.test_id}`, {
+          fetch(`https://simpleosbackend.herokuapp.com/users/addTest/${localStorage.getItem('user_id')}/${this.state.test_id}`, {
             method: "Post"
           })
           .then(res => res.json());
@@ -135,15 +137,23 @@ export default class Test extends Component {
         myQuestion = myQuestion.replace('I.', '<br>I.');
         myData.push(myQuestion);
       });
-      
-      this.setState({questions: myData, answers: data.answers, length: myData.length}, () => {
-        document.querySelector('.container').style.display = 'block';
-        document.getElementById('loading_test').style.display = 'none';
-        const question = document.querySelector('.question');
-        question.innerHTML = `${this.state.currentIndex + 1}/${this.state.length}<br/><br/>${this.state.questions[this.state.currentIndex]}`;
-        this.setTheSelect(0);
-
-      });
+      if(this.state.guest) {
+        this.setState({questions: myData, answers: data.answers, length: 10}, () => {
+          document.querySelector('.container').style.display = 'block';
+          document.getElementById('loading_test').style.display = 'none';
+          const question = document.querySelector('.question');
+          question.innerHTML = `${this.state.currentIndex + 1}/${this.state.length}<br/><br/>${this.state.questions[this.state.currentIndex]}`;
+          this.setTheSelect(0);
+        });
+      } else {
+        this.setState({questions: myData, answers: data.answers, length: myData.length}, () => {
+          document.querySelector('.container').style.display = 'block';
+          document.getElementById('loading_test').style.display = 'none';
+          const question = document.querySelector('.question');
+          question.innerHTML = `${this.state.currentIndex + 1}/${this.state.length}<br/><br/>${this.state.questions[this.state.currentIndex]}`;
+          this.setTheSelect(0);
+        });
+      }
     })
     .catch(err => alert('Error Occured!'));
 
@@ -181,7 +191,7 @@ export default class Test extends Component {
         <br /><br />
         <div className="container" style={{background: "#3b444b", padding: 30, borderRadius: 10, display: 'none'}}>
           <Link to={'/review/' + this.state.test_id}>
-            <img alt="Ghey" style={{width: 30, float: 'right'}} src={star} />
+            <img alt="Ghey" style={{width: 30, float: 'right', opacity: this.state.starDisplay}} src={star} />
           </Link>
           <div className="info">    
             <div className="timer" style={{textAlign: 'center', padding: 5}}>

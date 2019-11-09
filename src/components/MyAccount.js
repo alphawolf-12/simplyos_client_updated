@@ -53,7 +53,7 @@ export default class MyAccount extends Component {
     if(!localStorage.getItem('username')) {
       window.location.href = '/';
     }
-    fetch(`https://simpleosbackend.herokuapp.com/users/${this.state.username}`)
+    fetch(`https://simpleosbackend.herokuapp.com/users/${localStorage.getItem('user_id')}`)
     .then(res => res.json())
     .then(data => {
       if(data != null) {
