@@ -17,3 +17,13 @@
 .test:hover {
   background: #8a868d;
 }
+
+.updated {
+  background: #8a868d;
+  color: white;
+}
+
+.updated:hover {
+  background: #c5c0ca;
+  color: black;
+}

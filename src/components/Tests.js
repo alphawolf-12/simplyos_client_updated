@@ -53,6 +53,8 @@ export default class Tests extends Component {
   }
   render() {
     const output = this.state.tests.map((test, i) => {
+      const updateAttr = test.updated ? ' updated' : '';
+      const updateValue = test.updated ? '(Updated)' : '';
       if(test.reviews_length) {
         const stars = test.reviews_sum / test.reviews_length;
         let output = '';
@@ -61,7 +63,7 @@ export default class Tests extends Component {
         }
         return (
           <Link to={'/test/' + test._id + "/" + test.title} key={i}>
-            <div className="test">
+            <div className={"test" + updateAttr}>
               <h5 style={{float: 'right'}}>{output}</h5>
               <br />
               <h2>{test.title}<br /></h2>
@@ -72,7 +74,7 @@ export default class Tests extends Component {
         return (
           <Link to={'/test/' + test._id + "/" + test.title} key={i}>
             <div className="test">
-              <h2>{test.title}</h2>
+              <h2>{test.title}{updateValue}</h2>
             </div>
           </Link>
       )
