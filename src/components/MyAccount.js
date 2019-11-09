@@ -56,7 +56,7 @@ export default class MyAccount extends Component {
     fetch(`https://simpleosbackend.herokuapp.com/users/${localStorage.getItem('user_id')}`)
     .then(res => res.json())
     .then(data => {
-      if(data != null) {
+      if(data != null && data.tests != undefined) {
         this.setState({tests: data.tests}, () => {
           this.uploadTests();
         })
