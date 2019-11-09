@@ -66,7 +66,7 @@ export default class Test extends Component {
   changeQuestion = () => {
     const selectDiv = document.querySelector('.selects');
     let answer = [];
-    if(selectDiv.childElementCount === 0) {
+    if(selectDiv.childElementCount === 1) {
       answer = document.getElementById(`answer_0`).value;
     } else {
       for(let i = 1; i <= selectDiv.childElementCount; i++) {
@@ -79,6 +79,10 @@ export default class Test extends Component {
       }
     }
     if(this.state.currentIndex !== this.state.length - 1) {
+      const userAnswer = answer;
+      if(userAnswer === this.state.answers[this.state.currentIndex]) {
+        this.setState({correctAnswers: this.state.correctAnswers + 1})
+      }
       const select = document.querySelector('.custom-select');
       const question = document.querySelector('.question');
       this.setState({currentIndex: this.state.currentIndex + 1}, () => {
@@ -160,7 +164,7 @@ export default class Test extends Component {
         });
       }
     })
-    .catch(err => alert('Error Occured!'));
+    .catch(err => console.log(err));
 
     setInterval(() => {
       if(this.state.timeLeft === 0 && this.statecurrentIndex === this.state.length - 1) {

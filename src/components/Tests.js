@@ -18,8 +18,9 @@ export default class Tests extends Component {
     .then(res => res.json())
     .then(data => {
       if(data.length === 0) {
-        document.getElementById('info').classList = "alert alert-danger";
+        document.getElementById('info').classList = "alert";
         document.getElementById('info').innerHTML = "No tests for this category!";
+        document.getElementById('info').style.color = 'white';
       } else {
         this.setState({tests: data});
         document.getElementById('info').style.display = "none";
@@ -27,7 +28,7 @@ export default class Tests extends Component {
         .then(res => res.json())
         .then(data => {
           if(data.length === 0) {
-            document.getElementById('info').classList = "alert alert-danger";
+            document.getElementById('info').classList = "alert";
             document.getElementById('info').innerHTML = "No tests for this category!";
           } else {
             this.setState({tests: data});
