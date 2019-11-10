@@ -53,14 +53,16 @@ export default class MyAccount extends Component {
     if(!localStorage.getItem('username')) {
       window.location.href = '/';
     }
-    if(localStorage.getItem('user_id')) {
-      fetch(`https://simpleosbackend.herokuapp.com/users/${localStorage.getItem('user_id')}`)
+    if(localStorage.getItem('username')) {
+      fetch(`https://simpleosbackend.herokuapp.com/user/username/${localStorage.getItem('username')}`)
       .then(res => res.json())
       .then(data => {
-        if(data != null && data.tests != undefined) {
+        if(data != null && data.tests != undefined && data != []) {
           this.setState({tests: data.tests}, () => {
             this.uploadTests();
           })
+        } else {
+          document.querySelector('.user_profile_3').style.display = 'block';
         }
         this.setData(data)})
       .catch(err => console.log(err));
