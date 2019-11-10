@@ -35,11 +35,12 @@ export default class Categories extends Component {
         <Helmet>
           <title>{ 'Categories' }</title>
         </Helmet>
-        <div className="container" style={{marginTop: '15px'}}>
-        <br /><br />
+        <div className="container">
           <h1>Categories</h1>
           <br />
-          {output}
+          <div className="categories_grid">
+            {output}
+          </div>
           <div id="info" className="myAlert" style={{display: "block", background: "darkgreen"}}>
             Loading...
           </div>

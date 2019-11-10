@@ -69,7 +69,6 @@ export default class Reivew extends Component {
                 this.setState({reviews: data.reviews}, () => {
                     if(this.state.reviews.includes(this.state.post_id)) {
                         this.getTheLatestReview();
-                        document.getElementById('submit_review').disabled = 'disabled';
                     } else {
                         this.setState({disabled: false})
                     }
@@ -82,7 +81,7 @@ export default class Reivew extends Component {
         .then(res => res.json())
         .then(data => {
             if(data.length === 0) {
-                document.getElementById('comments_list').innerHTML += '<li class="list-group-item">There are not any comments yet!</li>'
+                document.getElementById('comments_list').innerHTML += '<li>There are not any comments yet!</li>'
             } else {
                 this.setState({comments: data.reverse()})
             }
@@ -136,7 +135,7 @@ export default class Reivew extends Component {
     }
 
     sendReview = () => {
-        if(this.state.rating !== 0) {
+        if(this.state.rating !== 0 && !this.state.disabled) {
             if(window.confirm('Are you sure you want to submit your review?')) {
                 fetch(`http://simpleosbackend.herokuapp.com/tests/review/${this.state.rating}/${this.state.post_id}/${this.state.user_id}`, {
                     method: 'POST'
@@ -170,7 +169,7 @@ export default class Reivew extends Component {
     render() {
         this.starsHover();
         const output = this.state.comments.map((comment, i) => (
-            <li key={i} class="list-group-item">{comment.comment}</li>
+            <li key={i}>{comment.comment}</li>
         ))
         return(
             <div style={{marginTop: 150}}>
@@ -198,25 +197,30 @@ export default class Reivew extends Component {
                         </svg>
                     </div>
                     <br /><br />
-                    <button onClick={this.sendReview} id="submit_review" className="btn btn-info" style={{width: '80vw', marginLeft: '10vw',}}>Submit your review</button>
+                    <button onClick={this.sendReview} id="submit_review" className="btn btn-danger" style={{border: '0px',width: '80vw', background: "#ac6538", marginLeft: '10vw'}}>Submit your review</button>
                     <br /><br />
                     <center><h1>Your review: {this.state.rating}/5</h1></center>
+                    <br />
                 </div>
                 <div className="alredy_reviewed" style={{display: 'none'}}>
                     
                 </div>
-                <div className="container">
-                    <h5 style={{marginBottom: '20px'}}>Comments</h5>
-                    <ul class="my_llist" id="comments_list">
-                        {output}
-                    </ul>
-                    <form style={{marginTop: '20px'}} onSubmit={this.addComment}>
-                        <h5 style={{marginBottom: '20px'}}>Add your comment</h5>
-                        <input id="comment_input" className="form-control" placeholder="Comment:" />
-                        <input className="btn btn-info" type="submit" style={{width: "100%", marginTop: "20px"}} />
-                    </form>
-                </div>
-                <br />
+                <div style={{background: '#3e3e3e', color: 'white'}}>
+                    <br />
+                    <div className="review" style={{width: "80vw", margin: 'auto'}}>
+                        <form style={{marginTop: '20px'}} onSubmit={this.addComment}>
+                            <h3 style={{marginBottom: '20px', textAlign: 'center'}}>Add your comment</h3>
+                            <input id="comment_input" className="form-control" />
+                            <input className="btn btn-danger" type="submit" style={{border: '0px', width: "100%", background: "#ac6538", marginTop: "20px"}} />
+                        </form>
+                        <br />
+                        <h3 style={{marginBottom: '20px', textAlign: 'center'}}>Comments</h3>
+                        <ul class="my_llist" id="comments_list">
+                            {output}
+                        </ul>
+                    </div>
+                    <br />
+                </div> 
             </div>
         );
     }

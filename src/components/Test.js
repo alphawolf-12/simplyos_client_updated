@@ -19,6 +19,7 @@ export default class Test extends Component {
       username: localStorage.getItem('username') ? localStorage.getItem('username') : 'Guest',
       timeLeft: 3600,
       guest: localStorage.getItem('username') ? false : true,
+      quited: false,
       starDisplay: localStorage.getItem('username') ? '1' : '0',
     }
   }
@@ -111,7 +112,7 @@ export default class Test extends Component {
         <h2>You finished, ${this.state.username}!<br/><br />You got ${this.state.correctAnswers}/${this.state.length} </h2><br />
         `;
         document.querySelector('.info').innerHTML = output;
-        if(this.state.username !== "Guest") {
+        if(this.state.username !== "Guest" && !this.state.quited) {
           //console.log(`https://simpleosbackend.herokuapp.com/users/addTest/${this.state.username}/${this.state.test_id}`)
           fetch(`https://simpleosbackend.herokuapp.com/users/addTest/${localStorage.getItem('user_id')}/${this.state.test_id}`, {
             method: "Post"
@@ -123,7 +124,7 @@ export default class Test extends Component {
   }
 
   quit = () => {
-    this.setState({currentIndex: this.state.length - 1}, () => {
+    this.setState({currentIndex: this.state.length - 1, quited: true}, () => {
       this.changeQuestion();
     });
   }
@@ -197,8 +198,7 @@ export default class Test extends Component {
         <Helmet>
           <title>{ this.state.test_name }</title>
         </Helmet>
-        <br /><br />
-        <div className="container" style={{background: "#3b444b", padding: 30, borderRadius: 10, display: 'none'}}>
+        <div className="container" style={{marginTop: '40px', background: "#3b444b", padding: 30, borderRadius: 10, display: 'none'}}>
           <Link to={'/review/' + this.state.test_id}>
             <img alt="Ghey" style={{width: 30, float: 'right', opacity: this.state.starDisplay}} src={star} />
           </Link>

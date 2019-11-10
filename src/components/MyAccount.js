@@ -127,12 +127,12 @@ export default class MyAccount extends Component {
             <div className="more_info">
             </div>
             <Link to={'/update'}>
-              <button className="btn btn-info" style={{width: "100%", marginTop: "10px"}}>Update</button>
+              <button className="btn btn-danger" style={{border: '0px',width: "100%", marginTop: "10px", background: "#ac6538"}}>Update</button>
             </Link>
             <Link to={'/reviews/' + localStorage.getItem('user_id')}>
-              <button className="btn btn-warning" style={{width: "100%", marginTop: "10px", color: 'white'}}>Check my reviews</button>
+              <button className="btn btn-danger" style={{border: '0px',width: "100%", marginTop: "10px", color: 'white', background: "#93552f"}}>Check my reviews</button>
             </Link>
-            <button onClick={this.logOut} className="btn btn-danger" style={{width: "100%", marginTop: "10px"}}>Log Out</button>
+            <button onClick={this.logOut} className="btn btn-danger" style={{border: '0px',width: "100%", marginTop: "10px", background: "#451f16"}}>Log Out</button>
             <br />
             <br />
             <br />

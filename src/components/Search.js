@@ -41,13 +41,14 @@ export default class Search extends Component {
           <title>{ 'Search' }</title>
         </Helmet>
         <br /><br />
-        <div id="lodaing_search" className="alert alert-success" style={{position: 'inherit', width: "80vw", margin: 'auto'}}>
+        <div id="lodaing_search" className="alert" style={{position: 'inherit', width: "80vw", margin: 'auto'}}>
           Loading...
         </div>
-        <div className="container" style={{display: 'none'}}>
+        <div className="container" style={{display: 'none', marginTop: 0}}>
           <h1 id="search_results">Results: 0</h1>
           <br />
           {output}
+          <br />
         </div>
       </div>
     );

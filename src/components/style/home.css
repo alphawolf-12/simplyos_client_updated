@@ -50,11 +50,12 @@ a {
   padding: 50px;
 }
 
-@media(max-width: 800px) {
+@media(max-width: 1100px) {
   .container_2 {
     width: 0px;
   }
   .container_1 {
     width: 100%;
+    background: linear-gradient(#3e3e3e 60%, #cac9c0);
   }
 }

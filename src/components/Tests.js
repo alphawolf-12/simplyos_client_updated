@@ -75,6 +75,7 @@ export default class Tests extends Component {
         return (
           <Link to={'/test/' + test._id + "/" + test.title} key={i}>
             <div className="test">
+              <br />
               <h2>{test.title}{updateValue}</h2>
             </div>
           </Link>
@@ -86,12 +87,13 @@ export default class Tests extends Component {
         <Helmet>
           <title>{ this.state.category_name }</title>
         </Helmet>
-        <br /><br />
         <div className="categories_list">
           <div className="container">
             <h1>Tests</h1>
             <br />
-            {output}
+            <div className="categories_grid">
+              {output}
+            </div>
             <div id="info" className="myAlert" style={{display: "block", background: "darkgreen"}}>
               Loading...
             </div>
