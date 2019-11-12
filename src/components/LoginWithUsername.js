@@ -65,18 +65,20 @@ export default class LoginWithUsername extends Component {
 
   render() {
     return (
-      <div style={{marginTop: 150}}>
+      <div>
         <Helmet>
           <title>{ 'Login' }</title>
         </Helmet>
-        <div className="container">
+        <div className="tests_header">
+            <h1>Log in</h1>
+        </div>
+        <div className="container" style={{marginTop: 20}}>
           <form onSubmit={this.onSubmit}>
-            <center><h1>Log In</h1></center>
             <h3>Username: </h3>
             <input disabled={this.state.disabled} id="username" type="text" className="form-control" style={{marginBottom: 15}} />
             <h3>Password: </h3>
             <input disabled={this.state.disabled}  id="password" type="password" className="form-control" style={{marginBottom: 15}} />
-            <input disabled={this.state.disabled}  type="submit" className="btn btn-info" style={{width: "100%"}} />
+            <input disabled={this.state.disabled}  type="submit" className="btn btn-primary" style={{width: "100%"}} />
             <br /><br />
             <Link to={"/signup"} className="create_account_link">
               You dosen't have an account? Click here!

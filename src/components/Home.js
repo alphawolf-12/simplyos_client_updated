@@ -56,7 +56,7 @@ export default class Home extends Component {
             <h1 className="heading_2" style={{display: 'none'}}>The Great Aim of Education is not Knowledge, But Action!</h1>
             <h1 className="heading_3" style={{display: 'none'}}>We Help You to Learn New Things, search your test down here!</h1>
             <form onSubmit={this.openSearch}>
-              <input className="form-control" />
+              <input className="form-control s" />
             </form>
           </div>
           <br />

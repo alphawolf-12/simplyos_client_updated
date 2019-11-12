@@ -60,11 +60,13 @@ export default class Update extends Component {
                 <Helmet>
                     <title>{ 'Update' }</title>
                 </Helmet>
-                <div className="container" style={{marginTop: "150px"}}>
+                <div className="tests_header">
+                    <h1>Update</h1>
+                </div>
+                <div className="container" style={{marginTop: 20}}>
                     <form onSubmit={this.onSubmit}>
-                        <center style={{marginBottom: 15}}><h1>Update</h1></center>
                         <h3>Certifications</h3>
-                        <textarea disabled={this.state.disabled} id="certifications" className="form-control" style={{marginBottom: 15}}></textarea>
+                        <textarea disabled={this.state.disabled}  id="certifications" className="form-control" style={{marginBottom: 15, color: 'black', border: '1px solid black'}}></textarea>
                         <h3>Qualifications</h3>
                         <textarea disabled={this.state.disabled} id="qualifications" className="form-control" style={{marginBottom: 15}}></textarea>
                         <h3>Organization</h3>
@@ -72,8 +74,9 @@ export default class Update extends Component {
                         <div className="myAlert">
                             <h3 className="myAlertText">Every field should have at least 4 characters!</h3>
                         </div>
-                        <input disabled={this.state.disabled} type="submit" value="Update" className="btn btn-info" style={{width: "100%", marginBottom: "30px"}} />
+                        <input disabled={this.state.disabled} type="submit" value="Update" className="btn btn-primary" style={{width: "100%", marginBottom: "30px"}} />
                     </form>
+                    <br />
                 </div>
             </div>
         );

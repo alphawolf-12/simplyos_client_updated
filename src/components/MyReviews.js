@@ -58,7 +58,10 @@ export default class MyReviews extends Component {
                 <Helmet>
                     <title>{  this.state.username + ' Reviews' }</title>
                 </Helmet>
-                <div className="container" style={{marginTop: 150}}>
+                <div className="tests_header">
+                <h1>{this.state.username + " Reviews"}</h1>
+                </div>
+                <div className="container" style={{marginTop: 20}}>
                 <br />
                 <h1>Results | {this.state.posts.length}</h1>
                     {reviewsOutput}

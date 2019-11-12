@@ -27,8 +27,8 @@ export default class MyReviews extends Component {
             fetch(`https://simpleosbackend.herokuapp.com/reviews/update/${this.state.review_id}/${review}`, {
                 method: 'POST'
             })
-            .then(res => window.location.reload())
-            .catch(err => window.location.reload())
+            .then(res => window.location.href = '/')
+            .catch(err => window.location.href = '/')
         }
     }
 
@@ -38,7 +38,10 @@ export default class MyReviews extends Component {
                 <Helmet>
                     <title>{ 'Update Review' }</title>
                 </Helmet>
-                <div className="container" style={{marginTop: 150}}>
+                <div className="tests_header">
+                    <h1>Update your review</h1>
+                </div>
+                <div className="container" style={{marginTop: 20}}>
                     <br />
                     <h1>Update your review</h1>
                     <br />
@@ -50,7 +53,7 @@ export default class MyReviews extends Component {
                         <option value="5">5</option>
                     </select>
                     <br />
-                    <button onClick={this.submit} className="btn btn-info" style={{width: "100%"}}>Update</button>
+                    <button onClick={this.submit} className="btn btn-primary" style={{width: "100%"}}>Update</button>
                 </div>
                 <br />
                 <br />

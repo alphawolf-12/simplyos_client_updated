@@ -72,9 +72,11 @@ export default class Signup extends Component {
                 <Helmet>
                     <title>{ 'Sign Up' }</title>
                 </Helmet>
-                <div className="container" style={{marginTop: "150px"}}>
+                <div className="tests_header">
+                    <h1>Sign up</h1>
+                </div>
+                <div className="container" style={{marginTop: "20px"}}>
                     <form onSubmit={this.onSubmit}>
-                        <center style={{marginBottom: 15}}><h1>Sign Up</h1></center>
                         <h3>Username: </h3>
                         <input disabled={this.state.disabled} id="username" type="text" className="form-control" style={{marginBottom: 15}} />
                         <h3>Email: </h3>
@@ -90,7 +92,7 @@ export default class Signup extends Component {
                         <div className="myAlert">
                             <h3 className="myAlertText">Every field should have at least 4 characters!</h3>
                         </div>
-                        <input disabled={this.state.disabled} type="submit" className="btn btn-info" style={{width: "100%", marginBottom: "30px"}} />
+                        <input disabled={this.state.disabled} type="submit" className="btn btn-primary" style={{width: "100%", marginBottom: "30px"}} />
                     </form>
                 </div>
             </div>
