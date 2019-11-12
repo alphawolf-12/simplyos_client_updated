@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import './style/search.css';
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet';
+import Navbar from './Navbar';
 
 export default class Search extends Component {
   constructor(props) {
@@ -36,16 +37,15 @@ export default class Search extends Component {
       </Link>
     ))
     return (
-      <div className="search_container">
+      <div style={{background: 'white', marginTop: 0, fontFamily: 'Comic Sans MS', width: "80vw", margin: "auto"}}>
         <Helmet>
           <title>{ 'Search' }</title>
         </Helmet>
-        <br /><br />
         <div id="lodaing_search" className="alert" style={{position: 'inherit', width: "80vw", margin: 'auto'}}>
           Loading...
         </div>
-        <div className="container" style={{display: 'none', marginTop: 0}}>
-          <h1 id="search_results">Results: 0</h1>
+        <div className="container" style={{display: 'none', marginTop: 0, background: 'white', width: "100%"}}>
+          <h1 id="search_results" style={{color: 'black'}}>Results: 0</h1>
           <br />
           {output}
           <br />
