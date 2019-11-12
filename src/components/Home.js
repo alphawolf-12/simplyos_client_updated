@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './style/home.css';
 import Img1 from '../images/img_1.jpg';
 import { Helmet } from 'react-helmet'
+import Navbar from './Navbar';
 
 export default class Home extends Component {
   openSearch = (e) => {
@@ -13,22 +14,55 @@ export default class Home extends Component {
   }
   render() {
     return (
-      <div className="home_content">
-        <Helmet>
-          <title>{ 'Home' }</title>
-        </Helmet>
-        <div className="container_2">
-          <img alt="Img" src={Img1} style={{width: "100%", height: "100%", backgroundSize: "cover", backgroundPosition: "center"}} />
-        </div>
-        <div className="container_1">
-          <div className="search_content">
-            <h4 style={{color: "#fff"}}>Search your test</h4>
-            <form onSubmit={this.openSearch}>
-              <input className="form-control" type="text"
-                aria-label="Search" style={{background: 'transparent', color: 'white', border: '1px solid white'}} />
-            </form>
+      <div>
+      <Navbar />
+      <aside id="fh5co-hero">
+        <div class="flexslider">
+          <ul class="slides">
+            <li>
+              <div class="overlay-gradient"></div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-8 col-md-offset-2 text-center slider-text">
+                    <div class="slider-text-inner">
+                      <h1>The Roots of Education are Bitter, But the Fruit is Sweet</h1>
+                      
+                      
+                      <p><a class="btn btn-primary btn-lg" href="#">Start Learning Now!</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li style={{background: 'black'}}>
+              <div class="overlay-gradient"></div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-8 col-md-offset-2 text-center slider-text">
+                    <div class="slider-text-inner">
+                      <h1>The Great Aim of Education is not Knowledge, But Action</h1>
+                      <p><a class="btn btn-primary btn-lg btn-learn" href="#">Start Learning Now!</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li style={{background: "#3e3e3e3e"}}>
+              <div class="overlay-gradient"></div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-8 col-md-offset-2 text-center slider-text">
+                    <div class="slider-text-inner">
+                      <h1>We Help You to Learn New Things</h1>
+                      <p><a class="btn btn-primary btn-lg btn-learn" href="#">Start Learning Now!</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>		   	
+            </ul>
           </div>
-        </div>
+      </aside>
       </div>
     );
   }

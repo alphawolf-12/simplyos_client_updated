@@ -59,3 +59,9 @@ a {
     background: linear-gradient(#3e3e3e 60%, #cac9c0);
   }
 }
+
+@media(max-width: 700px) {
+  #fh5co-logo {
+    display: none;
+  }
+}

@@ -27,3 +27,20 @@
   background: #c5c0ca;
   color: black;
 }
+
+.tests_header {
+  background: #3e3e3e;
+  padding: 100px;
+  text-align: center;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.tests_header h1 {
+  color: white;
+  transition: 0.5s;
+}
+
+.tests_header:hover {
+  background: gray;
+}

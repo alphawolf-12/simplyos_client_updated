@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import Navbar from './components/Navbar';
 import Search from './components/Search';
 import MyAccount from './components/MyAccount';
 import Home from './components/Home';
@@ -14,6 +13,7 @@ import Update from './components/Update';
 import MyReviews from './components/MyReviews';
 import Review from './components/Review';
 import UpdateReview from './components/UpdateReview';
+import Navbar from './components/Navbar';
 import './App.css';
 
 class App extends Component {
@@ -21,7 +21,6 @@ class App extends Component {
     return (
       <Router>
         <div className="App" style={{minHeight: "100vh", overflowX: "hidden", overflowY: "auto"}}>
-          <Navbar />
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/login" exact component={Login} />

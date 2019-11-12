@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import star from '../images/star.ico';
 import './style/review_star.css';
+import Navbar from './Navbar';
 
 export default class Reivew extends Component {
     constructor(props) {
@@ -172,8 +173,9 @@ export default class Reivew extends Component {
             <li key={i}>{comment.comment}</li>
         ))
         return(
-            <div style={{marginTop: 150}}>
-                <div className="review">
+            <div>
+                <Navbar />
+                <div className="review" id="rev">
                     <div className="stars">
                         <svg height="100" width="100">
                             <polygon className="svg_1" points="50,5 20,99 95,39 5,39 80,99"
@@ -197,7 +199,7 @@ export default class Reivew extends Component {
                         </svg>
                     </div>
                     <br /><br />
-                    <button onClick={this.sendReview} id="submit_review" className="btn btn-danger" style={{border: '0px',width: '80vw', background: "#ac6538", marginLeft: '10vw'}}>Submit your review</button>
+                    <button onClick={this.sendReview} id="submit_review" className="btn btn-primary" style={{border: '0px',width: '80vw', marginLeft: '10vw'}}>Submit your review</button>
                     <br /><br />
                     <center><h1>Your review: {this.state.rating}/5</h1></center>
                     <br />
@@ -205,13 +207,13 @@ export default class Reivew extends Component {
                 <div className="alredy_reviewed" style={{display: 'none'}}>
                     
                 </div>
-                <div style={{background: '#3e3e3e', color: 'white'}}>
+                <div>
                     <br />
                     <div className="review" style={{width: "80vw", margin: 'auto'}}>
                         <form style={{marginTop: '20px'}} onSubmit={this.addComment}>
                             <h3 style={{marginBottom: '20px', textAlign: 'center'}}>Add your comment</h3>
                             <input id="comment_input" className="form-control" />
-                            <input className="btn btn-danger" type="submit" style={{border: '0px', width: "100%", background: "#ac6538", marginTop: "20px"}} />
+                            <input className="btn btn-primary" type="submit" style={{border: '0px', width: "100%", marginTop: "20px"}} />
                         </form>
                         <br />
                         <h3 style={{marginBottom: '20px', textAlign: 'center'}}>Comments</h3>

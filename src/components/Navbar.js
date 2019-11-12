@@ -1,101 +1,61 @@
 import React, { Component } from 'react';
-import './style/navbar.css';
 import {Link} from 'react-router-dom';
 import Logo from '../images/logo.png';
 
 export default class Navbar  extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      navbar_visible: false,
-      isLoggedIn: localStorage.getItem('username') ? true : false,
-      loggedInText: localStorage.getItem('username') ? "My Account" : 'Log In',
-      loggedInPath: localStorage.getItem('username') ? '/myaccount' : '/login',
-    }
-  }
+	constructor(props) {
+		super(props);
 
-  componentDidMount() {
-    this.checkSize();
-    window.addEventListener('resize', () => {
-      this.checkSize();
-    })
-  }
+		this.state = {
+			buttonContent: localStorage.getItem('username') ? 'My Account' : 'Login',
+			buttonHref: localStorage.getItem('username') ? '/myaccount' : '/login',
+		}
+	}
 
-  checkSize() {
-    const width = window.innerWidth;
-    if(width > 550) {
-      document.querySelector('.navbar_toggle').style.display = 'none';
-      this.hideNavbar();
-    } else {
-      document.querySelector('.navbar_toggle').style.display = 'block';
-      document.querySelector('.navbar_content').style.display = 'fixed';
-      
-    }
-  }
+	componentDidMount() {
 
-  hideNavbar = () => {
-    document.querySelector('.navbar').style.marginLeft = "0px"
-    document.querySelector('.navbar_content').style.marginLeft = "-250px"
-    this.setState({navbar_visible: false});
-  }
-
-  logOut = () => {
-    if(this.state.isLoggedIn) {
-  
-    } else {
-      this.hideNavbar();
-    }
-  }
-
-  make_navbar_visible = () => {
-    if(this.state.navbar_visible) {
-      document.querySelector('.navbar_content').style.marginLeft = "-250px"
-      document.querySelector('.navbar_toggle').id="no_rotate-text"
-      this.setState({navbar_visible: false});
-    } else {
-      document.querySelector('.navbar_content').style.marginLeft = "0px"
-      this.setState({navbar_visible: true});
-    }
-  }
-  render() {
-    return (
-      <div>
-        <div className="navbar">
-          <div className="navbar_left">
-            <Link to={'/'}>
-              <img alt="Sorry" src={Logo} style={{width: 80, marginLeft: 5}} />
-            </Link>
-          </div>
-          <div className="navbar_right">
-            <a href="#" style={{transition: '0.5s', padding: '15px'}} id="no_rotate-text" className="navbar_toggle" onClick={this.make_navbar_visible}>&#x2630;</a>
-            <div className="navbar_web">
-              <Link to={'/'} className="web_link">
-                Home
-              </Link>
-              <Link to={'/categories'} className="web_link">
-                Categories
-              </Link>
-              <Link to={this.state.loggedInPath} className="web_link" onClick={this.logOut}>
-                {this.state.loggedInText}
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="navbar_content" >
-          <div className="header" style={{borderBottom: '1px solid white'}}>
-            <h3 style={{fontSize: 24}}>Simplyopensource</h3>
-          </div>
-          <Link to={'/'}>
-            Home
-          </Link>
-          <Link to={'/categories'}>
-            Categories
-          </Link>
-          <Link to={this.state.loggedInPath} onClick={this.logOut}>
-            {this.state.loggedInText}
-          </Link>
-        </div>
-      </div>
-    );
-  }
+	}
+	render() {
+		return (
+		<div>
+			<nav class="fh5co-nav" role="navigation">
+					<div class="top">
+					<div class="container">
+						<div class="row">
+						<div class="col-xs-12 text-right">
+							<p class="site">www.simplyopensource.in</p>
+							<p class="num">Call: +01 234 567 890</p>
+							<ul class="fh5co-social">
+							<li><a href="#"><i class="icon-facebook2"></i></a></li>
+							<li><a href="#"><i class="icon-twitter2"></i></a></li>
+							<li><a href="#"><i class="icon-dribbble2"></i></a></li>
+							<li><a href="#"><i class="icon-github"></i></a></li>
+							</ul>
+						</div>
+						</div>
+					</div>
+					</div>
+					<div class="top-menu">
+					<div class="container">
+						<div class="row">
+						<div class="col-xs-2">
+							<div id="fh5co-logo"><Link to={'/'}><i class="icon-study"></i>www.simplyopensource.in<span></span></Link></div>
+						</div>
+						<div class="col-xs-18 text-right menu-2">
+							<ul>
+							<li class="active"><Link to={'/'}>Home</Link></li>
+							<li class="active"><Link to={'/categories'}>Categories</Link></li>
+							<li class="btn-cta"><Link to={this.state.buttonHref}><span>{this.state.buttonContent}</span></Link></li>
+							</ul>
+						</div>
+						</div>
+					</div>
+					</div>
+				</nav>
+			<div class="gototop js-top">
+			<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+		</div>
+		</div>
+		);
+	}
 }

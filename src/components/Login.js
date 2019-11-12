@@ -17,13 +17,20 @@ export default class Login extends Component {
 
   render() {
     const responseGoogle = (response) => {
-      console.log(response);
       localStorage.setItem("username", response.w3.ig);
       localStorage.getItem("email", response.w3.U3);
-      window.location.href = "/";
+      fetch('https://simpleosbackend.herokuapp.com/user/username/' + response.w3.ig)
+      .then(res => res.json())
+      .then(data => {
+        if(data._id != null && data._id != undefined) {
+          localStorage.setItem('user_id', data._id);
+        }
+        window.location.href = '/';
+      })
     }
     return (
-      <div className="login_content">
+      <div>
+        <div className="login_content">
         <Helmet>
           <title>{ 'Login' }</title>
         </Helmet>
@@ -44,6 +51,7 @@ export default class Login extends Component {
             cookiePolicy={'single_host_origin'}
             cssClass="btnFacebook"
           />
+      </div>
       </div>
     );
   }

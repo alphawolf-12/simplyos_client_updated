@@ -21,12 +21,17 @@
 #comments_list li {
     margin-left: -40px;
     padding: 20px;
-    border: 1px solid #fff;
+    border: 1px solid black;
     border-radius: 25px;
     margin-bottom: 10px;
 }
 
-#comment_input {
-    background: transparent;
+
+#rev {
+    padding-top: 20px;
+    background: #3e3e3e;
+}
+
+#rev h1 {
     color: white;
 }

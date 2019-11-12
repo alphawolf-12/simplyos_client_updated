@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import "./style/categories.css";
 import {Link} from 'react-router-dom';
-import { Helmet } from 'react-helmet'
+import Navbar from './Navbar'
+import { Helmet } from 'react-helmet';
 
 export default class Categories extends Component {
   constructor(props) {
@@ -32,11 +33,14 @@ export default class Categories extends Component {
     ))
     return (
       <div className="categories_list">
+        <Navbar />
         <Helmet>
           <title>{ 'Categories' }</title>
         </Helmet>
+        <div className="tests_header">
+            <h1>Categories</h1>
+          </div>
         <div className="container">
-          <h1>Categories</h1>
           <br />
           <div className="categories_grid">
             {output}

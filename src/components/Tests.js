@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import './style/tests.css';
 import { Helmet } from 'react-helmet'
+import Navbar from './Navbar';
 
 export default class Tests extends Component {
   constructor(props) {
@@ -84,12 +85,15 @@ export default class Tests extends Component {
     })
     return (
       <div>
+        <Navbar />
         <Helmet>
           <title>{ this.state.category_name }</title>
         </Helmet>
         <div className="categories_list">
+          <div className="tests_header">
+            <h1>{this.state.category_name}</h1>
+          </div>
           <div className="container">
-            <h1>Tests</h1>
             <br />
             <div className="categories_grid">
               {output}

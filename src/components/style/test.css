@@ -1,5 +1,24 @@
 .test_container {
-  margin-top: 100px;
   padding: 20px;
   color: white;
+}
+
+.test_container h5 {
+  color: white;
+  font-size: 20px;
+}
+
+.test_container h4 {
+  color: white;
+  font-size: 20px;
+}
+
+.test_container select {
+  width: 100%;
+  font-size: 20px;
+  color: black;
+}
+
+.test_container button {
+  font-size: 20px;
 }
