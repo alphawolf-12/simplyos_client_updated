@@ -78,7 +78,7 @@ export default class Reivew extends Component {
             }
         })
         .catch(err => console.log(err));
-        fetch(`http://simpleosbackend.herokuapp.com/comments/post/${this.state.post_id}`)
+        fetch(`https://simpleosbackend.herokuapp.com/comments/post/${this.state.post_id}`)
         .then(res => res.json())
         .then(data => {
             if(data.length === 0) {
@@ -90,7 +90,7 @@ export default class Reivew extends Component {
     }
 
     getTheLatestReview = () => {
-        fetch(`http://simpleosbackend.herokuapp.com/reviews/user/${this.state.user_id}/${this.state.post_id}`)
+        fetch(`https://simpleosbackend.herokuapp.com/reviews/user/${this.state.user_id}/${this.state.post_id}`)
         .then(res => res.json())
         .then(data => {
             const review = data.review;
@@ -138,7 +138,7 @@ export default class Reivew extends Component {
     sendReview = () => {
         if(this.state.rating !== 0 && !this.state.disabled) {
             if(window.confirm('Are you sure you want to submit your review?')) {
-                fetch(`http://simpleosbackend.herokuapp.com/tests/review/${this.state.rating}/${this.state.post_id}/${this.state.user_id}`, {
+                fetch(`https://simpleosbackend.herokuapp.com/tests/review/${this.state.rating}/${this.state.post_id}/${this.state.user_id}`, {
                     method: 'POST'
                 }).then(res => window.location.reload())
                 .catch(err => window.location.reload())
@@ -156,10 +156,10 @@ export default class Reivew extends Component {
     }
 
     fetchComment = (c) => {
-        fetch(`http://simpleosbackend.herokuapp.com/comments/add/${c}/${this.state.user_id}/${this.state.post_id}`, {
+        fetch(`https://simpleosbackend.herokuapp.com/comments/add/${c}/${this.state.user_id}/${this.state.post_id}`, {
             method: 'POST'
         }).then(d => {
-            fetch(`http://simpleosbackend.herokuapp.com/comments/post/${this.state.post_id}`)
+            fetch(`https://simpleosbackend.herokuapp.com/comments/post/${this.state.post_id}`)
             .then(res => res.json())
             .then(data => {
                 this.setState({comments: data.reverse()})}
