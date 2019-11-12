@@ -1,5 +1,5 @@
 .test {
-  background: #c5c0ca;
+  background: #005073;
   border-radius: 10px;
   margin-top: 10px;
   transition: 0.5s;
@@ -15,7 +15,7 @@
 }
 
 .test:hover {
-  background: #8a868d;
+  background: #107dac;
 }
 
 .updated {

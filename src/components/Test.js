@@ -3,6 +3,7 @@ import './style/test.css';
 import star from '../images/star.ico';
 import {Link} from 'react-router-dom';
 import { Helmet } from 'react-helmet'
+import Navbar from './Navbar'
 
 export default class Test extends Component {
   constructor(props) {
@@ -99,6 +100,7 @@ export default class Test extends Component {
             <h2>You finished, ${this.state.username}!<br/><br />You got ${this.state.correctAnswers}/${this.state.length} </h2><br />
             `;
           document.querySelector('.info').innerHTML = output;
+          document.querySelector('.info').style.color = 'white';
           if(this.state.username !== "Guest") {
             //console.log(`https://simpleosbackend.herokuapp.com/users/addTest/${this.state.username}/${this.state.test_id}`)
             fetch(`https://simpleosbackend.herokuapp.com/users/addTest/${localStorage.getItem('user_id')}/${this.state.test_id}`, {
@@ -194,7 +196,7 @@ export default class Test extends Component {
   }
   render() {
     return (
-      <div className="test_container">
+      <div className="test_container" style={{fontFamily: 'Comic Sans MS'}}>
         <Helmet>
           <title>{ this.state.test_name }</title>
         </Helmet>

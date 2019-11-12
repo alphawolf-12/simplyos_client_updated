@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './style/myAccount.css';
 import {Link} from 'react-router-dom';
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet';
+import Navbar from './Navbar';
 
 export default class MyAccount extends Component {
   constructor(props) {
@@ -118,34 +119,37 @@ export default class MyAccount extends Component {
     )) 
     return (
       <div>
+        <Navbar />
         <Helmet>
           <title>{ 'My Account' }</title>
         </Helmet>
-        <div className="user_profile" style={{marginTop: 150}}>
+        <div className="tests_header">
+            <h1>{this.state.username}</h1>
+          </div>
+        <div className="user_profile" style={{marginTop: 20}}>
           <div className="user_profile_1">
-            <center><h2>User Information</h2></center>
+            <center><h2 style={{color: 'black'}}>User Information</h2></center>
             <hr />
-            <h5 style={{marginTop: "10px"}}><strong>Username:</strong> {this.state.username}</h5>
             <div className="more_info">
             </div>
-            <Link to={'/update'}>
-              <button className="btn btn-danger" style={{border: '0px',width: "100%", marginTop: "10px", background: "#ac6538"}}>Update</button>
+            <Link to={'/update'} className="update_links">
+              <button className="btn btn-primary" style={{border: '0px',width: "100%", marginTop: "10px", background: "#107dac"}}>Update</button>
             </Link>
             <Link to={'/reviews/' + localStorage.getItem('user_id')}>
-              <button className="btn btn-danger" style={{border: '0px',width: "100%", marginTop: "10px", color: 'white', background: "#93552f"}}>Check my reviews</button>
+              <button className="btn btn-primary" style={{border: '0px',width: "100%", marginTop: "10px", color: 'white', background: "#107dac"}}>Check my reviews</button>
             </Link>
-            <button onClick={this.logOut} className="btn btn-danger" style={{border: '0px',width: "100%", marginTop: "10px", background: "#451f16"}}>Log Out</button>
+            <button onClick={this.logOut} className="btn btn-primary" style={{border: '0px',width: "100%", marginTop: "10px", background: "#005073"}}>Log Out</button>
             <br />
             <br />
             <br />
           </div>
           <div className="user_profile_2" style={{display: "none"}}>
-            <center><h2>Finished</h2></center>
+            <center><h2 style={{color: 'black'}}>Finished</h2></center>
             <hr />
             {output}
           </div>
           <div className="user_profile_3" style={{display: "none"}}>
-            <center><h2>It looks like something is missing! Plese fill all the fields!</h2></center>
+            <center><h2  style={{color: 'black'}}>It looks like something is missing! Plese fill all the fields!</h2></center>
             <hr />
             <form onSubmit={this.onSubmit}>
               <h3>Certifications</h3>
@@ -159,7 +163,7 @@ export default class MyAccount extends Component {
               </div>
               <input disabled={this.state.disabled} type="submit" className="btn btn-info" style={{width: "100%", marginBottom: "30px"}} />
               <div className="myAlert">
-                  <h3 className="myAlertText">Every field should have at least 4 characters!</h3>
+                  <h3 className="myAlertText" >Every field should have at least 4 characters!</h3>
               </div>
             </form>
           </div>

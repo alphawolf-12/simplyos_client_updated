@@ -1,5 +1,5 @@
 .category {
-  background: #8a868d;
+  background: 	#005073;
   color: white;
   border-radius: 10px;
   margin-top: 10px;
@@ -13,12 +13,8 @@
   color: white;
 }
 
-.category h2:hover {
-  color: black;
-}
-
 .category:hover {
-  background: #c5c0ca;
+  background: #107dac;
 }
 
 .categories_grid {

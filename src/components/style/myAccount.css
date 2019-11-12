@@ -24,3 +24,11 @@
         display: block;
     }
 }
+
+.update_links {
+    color: white;
+}
+
+.update_links:hover {
+    background: white;
+}
