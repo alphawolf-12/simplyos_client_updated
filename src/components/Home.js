@@ -15,7 +15,7 @@ export default class Home extends Component {
   }
 
   openSearch = (e) => {
-    const query = document.querySelector('.form-control').value;
+    const query = document.querySelector('.s').value;
     if(query.length > 0 && query.replace(" ", "").length > 0) {
       this.setState({query, redirect: true})
     }
@@ -56,7 +56,7 @@ export default class Home extends Component {
             <h1 className="heading_2" style={{display: 'none'}}>The Great Aim of Education is not Knowledge, But Action!</h1>
             <h1 className="heading_3" style={{display: 'none'}}>Search your test down here!</h1>
             <form onSubmit={this.openSearch}>
-              <input className="form-control s" />
+              <input className="s" />
             </form>
           </div>
           <br />

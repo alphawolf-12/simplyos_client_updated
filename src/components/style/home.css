@@ -54,10 +54,21 @@
 .s {
   border: 1px solid white !important;
   color: white;
+  width: 100%;
+  background: transparent;
+  padding: 8px;
+  font-size: 25px;
+  border-radius: 25px;
   font-size: 20px;
+  outline: none;
 }
 
 .s:hover {
+  border: 1px solid white !important;
+}
+
+
+s:focus {
   border: 1px solid white !important;
 }
 
