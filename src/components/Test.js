@@ -81,7 +81,10 @@ export default class Test extends Component {
       }
     }
     if(this.state.currentIndex !== this.state.length - 1) {
-      const userAnswer = answer;
+      let userAnswer = answer;
+      if(/\s+$/.test(this.state.answers[this.state.currentIndex])) {
+        userAnswer += ' ';
+      }
       if(userAnswer === this.state.answers[this.state.currentIndex]) {
         this.setState({correctAnswers: this.state.correctAnswers + 1})
       }

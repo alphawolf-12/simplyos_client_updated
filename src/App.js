@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Search from './components/Search';
+import './components/style/bootstrap.css';
+import './components/style/my_style.css';
 import MyAccount from './components/MyAccount';
 import Home from './components/Home';
 import Login from './components/Login';
