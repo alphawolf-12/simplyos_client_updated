@@ -22,8 +22,10 @@ export default class Login extends Component {
       fetch('https://simpleosbackend.herokuapp.com/user/username/' + response.w3.ig)
       .then(res => res.json())
       .then(data => {
-        if(data._id != null && data._id != undefined) {
-          localStorage.setItem('user_id', data._id);
+        if(data != null && data != undefined && data != []) {
+          if(data._id != null && data._id != undefined) {
+            localStorage.setItem('user_id', data._id);
+          }
         }
         window.location.href = '/';
       })
