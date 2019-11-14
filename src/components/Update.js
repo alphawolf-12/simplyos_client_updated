@@ -37,8 +37,8 @@ export default class Update extends Component {
     }
 
     componentDidMount() {
-        if(!localStorage.getItem('username')) {
-          window.location.href = '/';
+        if(!localStorage.getItem('username') && !localStorage.getItem('user_id')) {
+          window.location.href = '/myaccount';
         }
         fetch(`https://simpleosbackend.herokuapp.com/users/${localStorage.getItem('user_id')}`)
         .then(res => res.json())
