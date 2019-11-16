@@ -14,7 +14,7 @@ export default class Test extends Component {
       questions: [],
       answers: [],
       currentQuestion: 'Question No.1',
-      length: 5,
+      length: 0,
       correctAnswers: 0,
       currentIndex: 0,
       username: localStorage.getItem('username') ? localStorage.getItem('username') : 'Guest',
@@ -22,47 +22,90 @@ export default class Test extends Component {
       guest: localStorage.getItem('username') ? false : true,
       quited: false,
       starDisplay: localStorage.getItem('username') ? '1' : '0',
+      imageQuestions: [],
+      imageQuestionsLength: 0,
+      questionsLength: 0,
+      href: [],
+      imageAnswers: [],
+      imageQuestionStage: true
     }
   }
 
   setTheSelect = (i) => {
-    const selectDiv = document.querySelector('.selects');
-    selectDiv.innerHTML = '';
-    const question = this.state.questions[i];
-    const answer = this.state.answers[i];
-    let answers;
-    if(answer === null) {
-      answers = ['A'];
+    if(!this.state.imageQuestionStage || this.state.imageQuestionsLength === 0) {
+      const selectDiv = document.querySelector('.selects');
+      selectDiv.innerHTML = '';
+      const question = this.state.questions[i];
+      const answer = this.state.answers[i];
+      let answers;
+      if(answer === null) {
+        answers = ['A'];
+      } else {
+        answers = answer.split(',');
+      }
+      answers.forEach((answer, i) => {
+        const select = document.createElement('select');
+        select.className = 'custom-select';
+        select.innerHTML = `
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>`;
+        select.id = `answer_${i}`
+        select.style.marginBottom = "10px";
+        if(question.includes('E.')) {
+          select.innerHTML += `<option value="E">E</option>`
+        }
+        if(question.includes('F.')) {
+          select.innerHTML += `<option value="F">F</option>`
+        }
+        if(question.includes('G.')) {
+          select.innerHTML += `<option value="G">G</option>`
+        }
+        if(question.includes('H.')) {
+          select.innerHTML += `<option value="H">H</option>`
+        }
+        if(question.includes('I.')) {
+          select.innerHTML += `<option value="I">I</option>`
+        }
+        selectDiv.appendChild(select);
+      });
     } else {
+      const selectDiv = document.querySelector('.selects');
+      selectDiv.innerHTML = '';
+      const question = this.state.imageQuestions[i];
+      const answer = this.state.imageAnswers[i];
+      let answers;
+      console.log(this.state.imageQuestionsLength)
       answers = answer.split(',');
+      answers.forEach((answer, i) => {
+        const select = document.createElement('select');
+        select.className = 'custom-select';
+        select.innerHTML = `
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>`;
+        select.id = `answer_${i}`
+        select.style.marginBottom = "10px";
+        if(question.includes('E.')) {
+          select.innerHTML += `<option value="E">E</option>`
+        }
+        if(question.includes('F.')) {
+          select.innerHTML += `<option value="F">F</option>`
+        }
+        if(question.includes('G.')) {
+          select.innerHTML += `<option value="G">G</option>`
+        }
+        if(question.includes('H.')) {
+          select.innerHTML += `<option value="H">H</option>`
+        }
+        if(question.includes('I.')) {
+          select.innerHTML += `<option value="I">I</option>`
+        }
+        selectDiv.appendChild(select);
+      });
     }
-    answers.forEach((answer, i) => {
-      const select = document.createElement('select');
-      select.className = 'custom-select';
-      select.innerHTML = `
-        <option value="A">A</option>
-        <option value="B">B</option>
-        <option value="C">C</option>
-        <option value="D">D</option>`;
-      select.id = `answer_${i}`
-      select.style.marginBottom = "10px";
-      if(question.includes('E.')) {
-        select.innerHTML += `<option value="E">E</option>`
-      }
-      if(question.includes('F.')) {
-        select.innerHTML += `<option value="F">F</option>`
-      }
-      if(question.includes('G.')) {
-        select.innerHTML += `<option value="G">G</option>`
-      }
-      if(question.includes('H.')) {
-        select.innerHTML += `<option value="H">H</option>`
-      }
-      if(question.includes('I.')) {
-        select.innerHTML += `<option value="I">I</option>`
-      }
-      selectDiv.appendChild(select);
-    });
   }
 
   changeQuestion = () => {
@@ -82,18 +125,39 @@ export default class Test extends Component {
     }
     if(this.state.currentIndex !== this.state.length - 1) {
       let userAnswer = answer;
-      if(/\s+$/.test(this.state.answers[this.state.currentIndex])) {
-        userAnswer += ' ';
-      }
-      if(userAnswer === this.state.answers[this.state.currentIndex]) {
-        this.setState({correctAnswers: this.state.correctAnswers + 1})
+      if(!this.state.imageQuestionStage || this.state.imageQuestionsLength === 0) {
+        if(/\s+$/.test(this.state.answers[this.state.currentIndex - this.state.imageQuestionsLength])) {
+          userAnswer += ' ';
+        }
+        if(userAnswer === this.state.answers[this.state.currentIndex - this.state.imageQuestionsLength]) {
+          this.setState({correctAnswers: this.state.correctAnswers + 1})
+        }
+      } else {
+        if(/\s+$/.test(this.state.imageAnswers[this.state.currentIndex])) {
+          userAnswer += ' ';
+        }
+        if(userAnswer === this.state.imageAnswers[this.state.currentIndex]) {
+          this.setState({correctAnswers: this.state.correctAnswers + 1})
+        }
       }
       const select = document.querySelector('.custom-select');
       const question = document.querySelector('.question');
       this.setState({currentIndex: this.state.currentIndex + 1}, () => {
-      select.selectedIndex = 0;
-      this.setTheSelect(this.state.currentIndex );
-      question.innerHTML = `${this.state.currentIndex + 1}/${this.state.length}<br/><br/>${this.state.questions[this.state.currentIndex]}`;
+        if(this.state.imageQuestionsLength <= this.state.currentIndex) {
+          this.setState({imageQuestionStage: false}, () => {
+            select.selectedIndex = 0;
+            this.setTheSelect(this.state.currentIndex - this.state.imageQuestionsLength);
+            question.innerHTML = `${this.state.currentIndex + 1}/${this.state.length}<br/><br/>${this.state.questions[this.state.currentIndex - this.state.imageQuestionsLength]}`;  
+          })
+        } else {
+          select.selectedIndex = 0;
+          this.setTheSelect(this.state.currentIndex);
+          question.innerHTML = `${this.state.currentIndex + 1}/${this.state.length}<br/><br/>${this.state.imageQuestions[this.state.currentIndex]}
+          <br><br>
+          <center>
+            <img src="${this.state.href[this.state.currentIndex]}" class="image_test" />
+          </center>`;
+        }
       });
     } else {
       const userAnswer = answer;
@@ -135,6 +199,59 @@ export default class Test extends Component {
   }
 
   componentDidMount() {
+    fetch('https://simpleosbackend.herokuapp.com/imageQuestion/' + this.state.test_id)
+    .then(res => res.json())
+    .then(data => {
+      let questions = [];
+      let answers = [];
+      let href = [];
+      data.forEach(q => {
+        let myQuestion = q.question;
+        myQuestion = myQuestion.replace('A.', '<br><br>A.');
+        myQuestion = myQuestion.replace('B.', '<br>B.');
+        myQuestion = myQuestion.replace('C.', '<br>C.');
+        myQuestion = myQuestion.replace('D.', '<br>D.');
+        myQuestion = myQuestion.replace('E.', '<br>E.');
+        myQuestion = myQuestion.replace('F.', '<br>F.');
+        myQuestion = myQuestion.replace('G.', '<br>G.');
+        myQuestion = myQuestion.replace('H.', '<br>H.');
+        myQuestion = myQuestion.replace('I.', '<br>I.');
+        questions.push(myQuestion);
+        href.push(q.href);
+        answers.push(q.answer);
+      });
+      this.setState({ imageQuestionsLength: data.length , href: href, imageAnswers: answers ,imageQuestions: questions, length: this.state.length + data.length}, () => {
+        if(this.state.guest) {
+          if(this.state.imageQuestionsLength > 0) {
+            this.setState({length: 10}, () => {
+              document.querySelector('.container').style.display = 'block';
+              document.getElementById('loading_test').style.display = 'none';
+              const question = document.querySelector('.question');
+              question.innerHTML = `${this.state.imageQuestions[this.state.currentIndex]}
+            <br>
+            <br>
+            <center>
+              <img src="${this.state.href[0]}" class="image_test" />
+            </center>`;
+              this.setTheSelect(0);
+            });
+          }
+        } else {
+          if(this.state.imageQuestionsLength > 0) {
+            document.querySelector('.container').style.display = 'block';
+            document.getElementById('loading_test').style.display = 'none';
+            const question = document.querySelector('.question');
+            question.innerHTML = `${this.state.imageQuestions[this.state.currentIndex]}
+            <br>
+            <br>
+            <center>
+              <img src="${this.state.href[0]}" class="image_test" />
+            </center>`;
+            this.setTheSelect(0); 
+          }
+        }
+      })
+    })
     fetch(`https://simpleosbackend.herokuapp.com/test/${this.state.test_id}`)
     .then(res => res.json())
     .then(data => {
@@ -156,17 +273,21 @@ export default class Test extends Component {
         this.setState({questions: myData, answers: data.answers, length: 10}, () => {
           document.querySelector('.container').style.display = 'block';
           document.getElementById('loading_test').style.display = 'none';
-          const question = document.querySelector('.question');
-          question.innerHTML = `${this.state.currentIndex + 1}/${this.state.length}<br/><br/>${this.state.questions[this.state.currentIndex]}`;
-          this.setTheSelect(0);
+          if(this.state.imageQuestionsLength === 0) {
+            this.setTheSelect(0);
+            const question = document.querySelector('.question');
+            question.innerHTML = `${this.state.questions[this.state.currentIndex]}`;
+          }
         });
       } else {
-        this.setState({questions: myData, answers: data.answers, length: myData.length}, () => {
+        this.setState({questions: myData, answers: data.answers, length: this.state.length + myData.length}, () => {
           document.querySelector('.container').style.display = 'block';
           document.getElementById('loading_test').style.display = 'none';
-          const question = document.querySelector('.question');
-          question.innerHTML = `${this.state.currentIndex + 1}/${this.state.length}<br/><br/>${this.state.questions[this.state.currentIndex]}`;
-          this.setTheSelect(0);
+          if(this.state.imageQuestionsLength === 0) {
+            this.setTheSelect(0);
+            const question = document.querySelector('.question');
+            question.innerHTML = `${this.state.questions[this.state.currentIndex]}`;
+          }
         });
       }
     })
