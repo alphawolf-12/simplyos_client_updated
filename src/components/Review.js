@@ -162,7 +162,11 @@ export default class Reivew extends Component {
             fetch(`https://simpleosbackend.herokuapp.com/comments/post/${this.state.post_id}`)
             .then(res => res.json())
             .then(data => {
-                this.setState({comments: data.reverse()})}
+                if(this.state.comments.length === 0) {
+                    document.getElementById('comments_list').innerHTML = '';
+                }
+                this.setState({comments: data.reverse()})
+            }
             )
         })
     }
