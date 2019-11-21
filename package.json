@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "react": "^16.11.0",
+    "react-adsense": "^0.1.0",
     "react-dom": "^16.11.0",
     "react-facebook-login": "^4.1.1",
     "react-google-login": "^5.0.7",

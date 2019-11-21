@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import star from '../images/star.ico';
 import test from '../images/test.png'
 import Navbar from './Navbar';
+import AdSense from 'react-adsense';
 
 export default class Home extends Component {
   constructor(props) {
@@ -60,6 +61,14 @@ export default class Home extends Component {
             </form>
           </div>
           <br />
+          <AdSense.Google
+            client='ca-pub-159929003728698'
+            slot='7806394673'
+            style={{ display: 'block' }}
+  format='auto'
+  responsive='true'
+  layoutKey='-gw-1+2a-9x+5c'
+          />
           <div className="section-b" >
             <div className="box a">
                 <img width="100px" height="100px" src={test} style={{margin: 30}} />
