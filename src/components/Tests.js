@@ -15,7 +15,7 @@ export default class Tests extends Component {
   }
 
   componentDidMount() {
-    fetch(`https://simpleosbackend.herokuapp.com/tests/category/${this.state.category_id}/4`)
+    fetch(`http://35.200.158.23:5500/tests/category/${this.state.category_id}/4`)
     .then(res => res.json())
     .then(data => {
       if(data.length === 0) {
@@ -25,7 +25,7 @@ export default class Tests extends Component {
       } else {
         this.setState({tests: data});
         document.getElementById('info').style.display = "none";
-        fetch(`https://simpleosbackend.herokuapp.com/tests/category/${this.state.category_id}/8`)
+        fetch(`http://35.200.158.23:5500/tests/category/${this.state.category_id}/8`)
         .then(res => res.json())
         .then(data => {
           if(data.length === 0) {
@@ -35,7 +35,7 @@ export default class Tests extends Component {
             this.setState({tests: data});
             document.getElementById('info').style.display = "none";
           }
-          fetch(`https://simpleosbackend.herokuapp.com/tests/category/${this.state.category_id}`)
+          fetch(`http://35.200.158.23:5500/tests/category/${this.state.category_id}`)
           .then(res => res.json())
           .then(data => {
             if(data.length === 0) {

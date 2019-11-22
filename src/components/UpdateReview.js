@@ -12,7 +12,7 @@ export default class MyReviews extends Component {
     }
 
     componentDidMount() {
-        fetch('https://simpleosbackend.herokuapp.com/review/reviewId/' + this.state.review_id)
+        fetch('http://35.200.158.23:5500/review/reviewId/' + this.state.review_id)
         .then(res => res.json())
         .then(data => {
             document.querySelector('select').selectedIndex = data.review - 1;
@@ -24,7 +24,7 @@ export default class MyReviews extends Component {
     submit = () => {
         if(!this.state.disabled) {
             const review = document.querySelector('select').value;
-            fetch(`https://simpleosbackend.herokuapp.com/reviews/update/${this.state.review_id}/${review}`, {
+            fetch(`http://35.200.158.23:5500/reviews/update/${this.state.review_id}/${review}`, {
                 method: 'POST'
             })
             .then(res => window.location.href = '/')

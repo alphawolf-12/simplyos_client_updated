@@ -170,7 +170,7 @@ export default class Test extends Component {
           document.querySelector('.info').style.color = 'white';
           if(this.state.username !== "Guest") {
             //console.log(`https://simpleosbackend.herokuapp.com/users/addTest/${this.state.username}/${this.state.test_id}`)
-            fetch(`https://simpleosbackend.herokuapp.com/users/addTest/${localStorage.getItem('user_id')}/${this.state.test_id}`, {
+            fetch(`http://35.200.158.23:5500/users/addTest/${localStorage.getItem('user_id')}/${this.state.test_id}`, {
               method: "Post"
             })
             .then(res => res.json());
@@ -183,7 +183,7 @@ export default class Test extends Component {
         document.querySelector('.info').innerHTML = output;
         if(this.state.username !== "Guest" && !this.state.quited) {
           //console.log(`https://simpleosbackend.herokuapp.com/users/addTest/${this.state.username}/${this.state.test_id}`)
-          fetch(`https://simpleosbackend.herokuapp.com/users/addTest/${localStorage.getItem('user_id')}/${this.state.test_id}`, {
+          fetch(`http://35.200.158.23:5500/users/addTest/${localStorage.getItem('user_id')}/${this.state.test_id}`, {
             method: "Post"
           })
           .then(res => res.json());
@@ -199,7 +199,7 @@ export default class Test extends Component {
   }
 
   componentDidMount() {
-    fetch('https://simpleosbackend.herokuapp.com/imageQuestion/' + this.state.test_id)
+    fetch('http://35.200.158.23:5500/imageQuestion/' + this.state.test_id)
     .then(res => res.json())
     .then(data => {
       let questions = [];
@@ -252,7 +252,7 @@ export default class Test extends Component {
         }
       })
     })
-    fetch(`https://simpleosbackend.herokuapp.com/test/${this.state.test_id}`)
+    fetch(`http://35.200.158.23:5500/test/${this.state.test_id}`)
     .then(res => res.json())
     .then(data => {
       let myData = [];

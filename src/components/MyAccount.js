@@ -25,7 +25,7 @@ export default class MyAccount extends Component {
     const qualifications = document.getElementById('qualifications').value;
     const org = document.getElementById('organization').value;
     if(qualifications.trim().length > 3 && cert.trim().length > 3 && org.trim().length > 3) {
-      fetch(`https://simpleosbackend.herokuapp.com/users/${this.state.username}/0/${this.state.email}/${cert}/${qualifications}/${org}`, {
+      fetch(`http://35.200.158.23:5500/users/${this.state.username}/0/${this.state.email}/${cert}/${qualifications}/${org}`, {
         method: "POST"
     })
     .then(res => res.json())
@@ -55,7 +55,7 @@ export default class MyAccount extends Component {
       window.location.href = '/';
     }
     if(localStorage.getItem('username')) {
-      fetch(`https://simpleosbackend.herokuapp.com/user/username/${localStorage.getItem('username')}`)
+      fetch(`http://35.200.158.23:5500/user/username/${localStorage.getItem('username')}`)
       .then(res => res.json())
       .then(data => {
         if(data != null && data.tests != undefined && data != []) {
@@ -76,7 +76,7 @@ export default class MyAccount extends Component {
     if(this.state.tests.length > 0) {
       document.querySelector('.user_profile_2').style.display = "block";
       this.state.tests.forEach(test => {
-        fetch(`https://simpleosbackend.herokuapp.com/users/title/${test}`)
+        fetch(`http://35.200.158.23:5500/users/title/${test}`)
         .then(res => res.json())
         .then(data => {
           let names = this.state.testsTitles;

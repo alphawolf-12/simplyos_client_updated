@@ -13,7 +13,7 @@ export default class MyReviews extends Component {
         }
     }
     componentDidMount() {
-        fetch('https://simpleosbackend.herokuapp.com/reviews/user/' + this.state.user_id)
+        fetch('http://35.200.158.23:5500/reviews/user/' + this.state.user_id)
         .then(res => res.json())
         .then(res => {
             this.setState({user_reviews: res}, () => {
@@ -26,7 +26,7 @@ export default class MyReviews extends Component {
     ///users/title/:id
     fetchReviews = () => {
         this.state.user_reviews.forEach(review => {
-            fetch('https://simpleosbackend.herokuapp.com/users/title/' + review.post_id)
+            fetch('http://35.200.158.23:5500/users/title/' + review.post_id)
             .then(res => res.json())
             .then(data => {
                 let posts = this.state.posts;

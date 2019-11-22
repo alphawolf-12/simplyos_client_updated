@@ -19,7 +19,7 @@ export default class Login extends Component {
     const responseGoogle = (response) => {
       localStorage.setItem("username", response.w3.ig);
       localStorage.getItem("email", response.w3.U3);
-      fetch('https://simpleosbackend.herokuapp.com/user/username/' + response.w3.ig)
+      fetch('http://35.200.158.23:5500/user/username/' + response.w3.ig)
       .then(res => res.json())
       .then(data => {
         if(data != null && data != undefined && data != []) {

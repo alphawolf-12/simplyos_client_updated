@@ -19,12 +19,6 @@ import Navbar from './components/Navbar';
 import './App.css';
 
 class App extends Component {
-  componentDidMount() {
-    fetch('http://127.0.0.1:5000/tests')
-    .then(res => res.json())
-    .then(d => alert(d))
-    .catch(err => alert(err));
-  }
   render() {
     return (
       <Router>

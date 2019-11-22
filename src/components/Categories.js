@@ -13,7 +13,7 @@ export default class Categories extends Component {
   }
 
   componentDidMount() {
-    fetch('https://simpleosbackend.herokuapp.com/categories')
+    fetch('http://35.200.158.23:5500/categories')
     .then(res => res.json())
     .then(data => {
       this.setState({categories: data})

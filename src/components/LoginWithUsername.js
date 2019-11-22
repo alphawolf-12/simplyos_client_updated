@@ -17,7 +17,7 @@ export default class LoginWithUsername extends Component {
       if(localStorage.getItem('username')) {
         window.location.href = '/';
       }
-      fetch('https://simpleosbackend.herokuapp.com/users')
+      fetch('http://35.200.158.23:5500/users')
       .then(res => res.json())
       .then(data => {
         this.setState({users: data});
