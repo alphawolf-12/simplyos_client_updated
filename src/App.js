@@ -20,7 +20,7 @@ import './App.css';
 
 class App extends Component {
   componentDidMount() {
-    fetch('http://localhost:5000/tests')
+    fetch('http://localhost:5500/tests')
     .then(res => res.json())
     .then(d => alert(d))
     .catch(err => alert(err));
