@@ -16,7 +16,7 @@ export default class Search extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://35.200.158.23:5500/search/${this.state.query_string}`)
+    fetch(`https://simplyopensource.in:5000/search/${this.state.query_string}`)
     .then(res => res.json())
     .then(data => {
       this.setState({tests: data}, () => {

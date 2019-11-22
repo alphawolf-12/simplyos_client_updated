@@ -13,7 +13,7 @@ export default class Categories extends Component {
   }
 
   componentDidMount() {
-    fetch('http://35.200.158.23:5500/categories')
+    fetch('https://simplyopensource.in:5000/categories')
     .then(res => res.json())
     .then(data => {
       this.setState({categories: data})

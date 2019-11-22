@@ -15,7 +15,7 @@ export default class Signup extends Component {
         if(localStorage.getItem('username')) {
             window.location.href = '/';
         }
-        fetch('http://35.200.158.23:5500/users')
+        fetch('https://simplyopensource.in:5000/users')
         .then(res => res.json())
         .then(data => this.setState({users: data, disabled: ""}))
         .catch(err => console.log(err));
@@ -38,7 +38,7 @@ export default class Signup extends Component {
             });
             if(checkAvaibility) {
                 this.showAlert("Creating the user!")
-                fetch(`http://35.200.158.23:5500/users/${username}/${email}/${password}/${cert}/${qualifications}/${org}`, {
+                fetch(`https://simplyopensource.in:5000/users/${username}/${email}/${password}/${cert}/${qualifications}/${org}`, {
                     method: "POST"
                 })
                 .then(res => res.json())

@@ -61,7 +61,7 @@ export default class Reivew extends Component {
         if(!localStorage.getItem('username') || !localStorage.getItem('user_id')) {
             window.location.href = '/';
         }
-        fetch(`http://35.200.158.23:5500/users/${localStorage.getItem('user_id')}`)
+        fetch(`https://simplyopensource.in:5000/users/${localStorage.getItem('user_id')}`)
         .then(res => res.json())
         .then(data => {
             if(data === null) {
@@ -78,7 +78,7 @@ export default class Reivew extends Component {
             }
         })
         .catch(err => console.log(err));
-        fetch(`http://35.200.158.23:5500/comments/post/${this.state.post_id}`)
+        fetch(`https://simplyopensource.in:5000/comments/post/${this.state.post_id}`)
         .then(res => res.json())
         .then(data => {
             if(data.length === 0) {
@@ -90,7 +90,7 @@ export default class Reivew extends Component {
     }
 
     getTheLatestReview = () => {
-        fetch(`http://35.200.158.23:5500/reviews/user/${this.state.user_id}/${this.state.post_id}`)
+        fetch(`https://simplyopensource.in:5000/reviews/user/${this.state.user_id}/${this.state.post_id}`)
         .then(res => res.json())
         .then(data => {
             const review = data.review;
@@ -138,7 +138,7 @@ export default class Reivew extends Component {
     sendReview = () => {
         if(this.state.rating !== 0 && !this.state.disabled) {
             if(window.confirm('Are you sure you want to submit your review?')) {
-                fetch(`http://35.200.158.23:5500/tests/review/${this.state.rating}/${this.state.post_id}/${this.state.user_id}`, {
+                fetch(`https://simplyopensource.in:5000/tests/review/${this.state.rating}/${this.state.post_id}/${this.state.user_id}`, {
                     method: 'POST'
                 }).then(res => window.location.reload())
                 .catch(err => window.location.reload())
@@ -156,10 +156,10 @@ export default class Reivew extends Component {
     }
 
     fetchComment = (c) => {
-        fetch(`http://35.200.158.23:5500/comments/add/${c}/${this.state.user_id}/${this.state.post_id}`, {
+        fetch(`https://simplyopensource.in:5000/comments/add/${c}/${this.state.user_id}/${this.state.post_id}`, {
             method: 'POST'
         }).then(d => {
-            fetch(`http://35.200.158.23:5500/comments/post/${this.state.post_id}`)
+            fetch(`https://simplyopensource.in:5000/comments/post/${this.state.post_id}`)
             .then(res => res.json())
             .then(data => {
                 if(this.state.comments.length === 0) {

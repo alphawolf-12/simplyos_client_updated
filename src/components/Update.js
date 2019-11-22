@@ -19,7 +19,7 @@ export default class Update extends Component {
         const org = document.getElementById('organization').value;
         if(username.trim().length > 3 && qualifications.trim().length > 3 && cert.trim().length > 3 && org.trim().length > 3) {
             this.showAlert("Updating...");
-            fetch(`http://35.200.158.23:5500/users/update/${localStorage.getItem('user_id')}/${cert}/${qualifications}/${org}`, {
+            fetch(`https://simplyopensource.in:5000/users/update/${localStorage.getItem('user_id')}/${cert}/${qualifications}/${org}`, {
                 method: "Post"
             })
             .then(res => window.location.href = '/myaccount')
@@ -40,7 +40,7 @@ export default class Update extends Component {
         if(!localStorage.getItem('username') && !localStorage.getItem('user_id')) {
           window.location.href = '/myaccount';
         }
-        fetch(`http://35.200.158.23:5500/users/${localStorage.getItem('user_id')}`)
+        fetch(`https://simplyopensource.in:5000/users/${localStorage.getItem('user_id')}`)
         .then(res => res.json())
         .then(data => {
           const certifications = data.certifications;
