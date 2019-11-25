@@ -177,8 +177,16 @@ export default class Test extends Component {
           }
         });
       } else {
+        let result;
+        const half = this.state.questions.length / 2;
+        alert(half);
+        if(this.state.correctAnswers < half) {
+          result = 'failed';
+        } else {
+          result = 'passed';
+        }
         const output = `
-        <h2>You finished, ${this.state.username}!<br/><br />You got ${this.state.correctAnswers}/${this.state.length} </h2><br />
+        <h2>You ${result} the test, ${this.state.username}!<br/><br />You got ${this.state.correctAnswers}/${this.state.length} </h2><br />
         `;
         document.querySelector('.info').innerHTML = output;
         if(this.state.username !== "Guest" && !this.state.quited) {
@@ -199,6 +207,12 @@ export default class Test extends Component {
   }
 
   componentDidMount() {
+    const time = window.prompt('Enter the length of the test:')
+    if(time > 0) {
+      this.setState({timeLeft: time * 60})
+    } else {
+      alert('Time not valid, the length of the test set to default!')
+    }
     fetch('https://simplyopensource.in:5000/imageQuestion/' + this.state.test_id)
     .then(res => res.json())
     .then(data => {
@@ -330,9 +344,9 @@ export default class Test extends Component {
           </Link>
           <div className="info">    
             <div className="timer" style={{textAlign: 'center', padding: 5}}>
-              <h5 className="time_left">60:00</h5>
+            <h5 className="time_left" style={{fontFamily: 'Lucida Sans'}}></h5>
             </div>
-            <h4 className="question">Question No.1 <br /><br /> Correct answer is b</h4>
+            <h4 style={{fontFamily: 'Lucida Sans'}} className="question">Question No.1 <br /><br /> Correct answer is b</h4>
             <div className="selects">
             </div>
             <br /><br />

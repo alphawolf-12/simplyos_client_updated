@@ -77,17 +77,17 @@ export default class Signup extends Component {
                 </div>
                 <div className="container" style={{marginTop: "20px"}}>
                     <form onSubmit={this.onSubmit}>
-                        <h3>Username: </h3>
+                        <h3 style={{fontFamily: 'Lucida Sans'}}>Username: </h3>
                         <input disabled={this.state.disabled} id="username" type="text" className="form-control" style={{marginBottom: 15}} />
-                        <h3>Email: </h3>
+                        <h3 style={{fontFamily: 'Lucida Sans'}}>Email: </h3>
                         <input disabled={this.state.disabled} id="email" type="email" className="form-control" style={{marginBottom: 15}} />
-                        <h3>Password: </h3>
+                        <h3 style={{fontFamily: 'Lucida Sans'}}>Password: </h3>
                         <input disabled={this.state.disabled} id="password" type="password" className="form-control" style={{marginBottom: 15}} />
-                        <h3>Certifications</h3>
+                        <h3 style={{fontFamily: 'Lucida Sans'}}>Certifications</h3>
                         <textarea disabled={this.state.disabled} id="certifications" className="form-control" style={{marginBottom: 15}}></textarea>
-                        <h3>Qualifications</h3>
+                        <h3 style={{fontFamily: 'Lucida Sans'}}>Qualifications</h3>
                         <textarea disabled={this.state.disabled} id="qualifications" className="form-control" style={{marginBottom: 15}}></textarea>
-                        <h3>Organization</h3>
+                        <h3 style={{fontFamily: 'Lucida Sans'}}>Organization</h3>
                         <input disabled={this.state.disabled} id="organization" type="text" className="form-control" style={{marginBottom: 15}} />
                         <div className="myAlert">
                             <h3 className="myAlertText">Every field should have at least 4 characters!</h3>

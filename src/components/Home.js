@@ -64,11 +64,11 @@ export default class Home extends Component {
           <div className="section-b" >
             <div className="box a">
                 <img width="100px" height="100px" src={test} style={{margin: 30}} />
-                <h3 style={{padding: 20}}>Everybody is a genius. Try yourself by doing one of our tests.</h3>
+                <h3 style={{padding: 20, fontFamily: 'Lucida Sans'}}>Everybody is a genius. Try yourself by doing one of our tests.</h3>
             </div>
             <div className="box">
                 <img width="100px" height="100px" src={star} style={{margin: 30}} />
-                <h3 style={{padding: 20}}>At the end of each test you can give your review by clicking the star icon.</h3>
+                <h3 style={{padding: 20, fontFamily: 'Lucida Sans'}}>At the end of each test you can give your review by clicking the star icon.</h3>
             </div>
         </div>
         <br />

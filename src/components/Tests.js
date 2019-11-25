@@ -68,7 +68,7 @@ export default class Tests extends Component {
             <div className={"test" + updateAttr}>
               <h5 style={{float: 'right'}}>{output}</h5>
               <br />
-              <h2>{test.title}<br /></h2>
+              <h2 style={{fontFamily: 'Lucida Sans'}}>{test.title}<br /></h2>
             </div>
           </Link>
       )
@@ -77,7 +77,7 @@ export default class Tests extends Component {
           <Link to={'/test/' + test._id + "/" + test.title} key={i}>
             <div className="test">
               <br />
-              <h2>{test.title}{updateValue}</h2>
+              <h2 style={{fontFamily: 'Lucida Sans'}}>{test.title}{updateValue}</h2>
             </div>
           </Link>
       )

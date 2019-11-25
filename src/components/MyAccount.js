@@ -128,7 +128,7 @@ export default class MyAccount extends Component {
           </div>
         <div className="user_profile" style={{marginTop: 20}}>
           <div className="user_profile_1">
-            <center><h2 style={{color: 'black'}}>User Information</h2></center>
+            <center><h2 style={{color: 'black', fontFamily: 'Lucida Sans'}}>User Information</h2></center>
             <hr />
             <div className="more_info">
             </div>
@@ -149,7 +149,7 @@ export default class MyAccount extends Component {
             {output}
           </div>
           <div className="user_profile_3" style={{display: "none"}}>
-            <center><h2  style={{color: 'black'}}>It looks like something is missing! Plese fill all the fields!</h2></center>
+            <center><h2  style={{color: 'black', fontFamily: "Lucidd Sans"}}>It looks like something is missing! Plese fill all the fields!</h2></center>
             <hr />
             <form onSubmit={this.onSubmit}>
               <h3>Certifications</h3>

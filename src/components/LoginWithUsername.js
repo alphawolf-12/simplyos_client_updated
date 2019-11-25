@@ -74,9 +74,9 @@ export default class LoginWithUsername extends Component {
         </div>
         <div className="container" style={{marginTop: 20}}>
           <form onSubmit={this.onSubmit}>
-            <h3>Username: </h3>
+            <h3 style={{fontFamily: 'Lucida Sans'}}>Username: </h3>
             <input disabled={this.state.disabled} id="username" type="text" className="form-control" style={{marginBottom: 15}} />
-            <h3>Password: </h3>
+            <h3 style={{fontFamily: 'Lucida Sans'}}>Password: </h3>
             <input disabled={this.state.disabled}  id="password" type="password" className="form-control" style={{marginBottom: 15}} />
             <input disabled={this.state.disabled}  type="submit" className="btn btn-primary" style={{width: "100%"}} />
             <br /><br />
@@ -84,7 +84,7 @@ export default class LoginWithUsername extends Component {
               You dosen't have an account? Click here!
             </Link>
             <div className="myAlert">
-                <h3 className="myAlertText">Every field should have at least 4 characters!</h3>
+                <h3 style={{fontFamily: 'Lucida Sans'}} className="myAlertText">Every field should have at least 4 characters!</h3>
             </div>
           </form>
         </div>
