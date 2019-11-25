@@ -174,7 +174,7 @@ export default class Reivew extends Component {
     render() {
         this.starsHover();
         const output = this.state.comments.map((comment, i) => (
-            <li key={i}>{comment.comment}</li>
+            <li key={i} style={{fontFamily: "Lucida Sans", color: 'black', fontSize: 20}}>{comment.comment}</li>
         ))
         return(
             <div>
@@ -215,9 +215,9 @@ export default class Reivew extends Component {
                     <br />
                     <div className="review" style={{width: "80vw", margin: 'auto'}}>
                         <form style={{marginTop: '20px'}} onSubmit={this.addComment}>
-                            <h3 style={{marginBottom: '20px', textAlign: 'center'}}>Add your comment</h3>
+                            <h3 style={{marginBottom: '20px', textAlign: 'center', fontFamily: "Lucida Sans"}}>Add your comment</h3>
                             <input id="comment_input" className="form-control" />
-                            <input className="btn btn-primary" type="submit" style={{border: '0px', width: "100%", marginTop: "20px"}} />
+                            <input className="btn btn-primary" type="submit" style={{fontFamily: "Lucida Sans", border: '0px', width: "100%", marginTop: "20px"}} />
                         </form>
                         <br />
                         <h3 style={{marginBottom: '20px', textAlign: 'center'}}>Comments</h3>

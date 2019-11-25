@@ -46,9 +46,9 @@ export default class MyReviews extends Component {
             return(
                 <Link to={'/reviews/update/' + post.id}>
                     <div className="test">
-                    <h5 style={{float: 'right'}}>{output}</h5>
+                    <h5 style={{float: 'right', fontFamily: "Lucida Sans"}}>{output}</h5>
                     <br />
-                    <h2>{post.title}</h2>
+                    <h2 style={{fontFamily: "Lucida Sans"}}>{post.title}</h2>
                     </div>
                 </Link>
             )
