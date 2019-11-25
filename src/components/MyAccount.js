@@ -144,7 +144,7 @@ export default class MyAccount extends Component {
             <br />
           </div>
           <div className="user_profile_2" style={{display: "none"}}>
-            <center><h2 style={{color: 'black'}}>Finished</h2></center>
+            <center><h2 style={{color: 'black', fontFamily: 'Lucida Sans'}}>Finished</h2></center>
             <hr />
             {output}
           </div>
