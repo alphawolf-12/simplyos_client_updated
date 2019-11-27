@@ -218,12 +218,14 @@ export default class Test extends Component {
   }
 
   componentDidMount() {
-    const time = window.prompt('Enter the minutes you have to attend the test:');
-    const answers = window.prompt('Enter the number of questions you want to attend: ');
-    if(time > 0 && answers > 0) {
-      this.setState({timeLeft: time * 60, userInput: answers})
-    } else {
-      alert('Time not valid, the length of the test set to default!')
+    if(!this.state.guest) {
+      const time = window.prompt('Enter the minutes you have to attend the test:');
+      const answers = window.prompt('Enter the number of questions you want to attend: ');
+      if(time > 0 && answers > 0) {
+        this.setState({timeLeft: time * 60, userInput: answers})
+      } else {
+        alert('Time not valid, the length of the test set to default!')
+      }
     }
     fetch('https://simplyopensource.in:5000/imageQuestion/' + this.state.test_id)
     .then(res => res.json())
@@ -309,6 +311,7 @@ export default class Test extends Component {
             const question = document.querySelector('.question');
             question.innerHTML = `${this.state.questions[this.state.currentIndex]}`;
           }
+          this.shuffle(this.state.answers, this.state.questions);
         });
       } else {
         this.setState({questions: myData, answers: data.answers, length: this.state.length + myData.length}, () => {
