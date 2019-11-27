@@ -27,7 +27,9 @@ export default class Test extends Component {
       questionsLength: 0,
       href: [],
       imageAnswers: [],
-      imageQuestionStage: true
+      imageQuestionStage: true,
+      userInput: 0,
+      correctIndexes: []
     }
   }
 
@@ -130,14 +132,18 @@ export default class Test extends Component {
           userAnswer += ' ';
         }
         if(userAnswer === this.state.answers[this.state.currentIndex - this.state.imageQuestionsLength]) {
-          this.setState({correctAnswers: this.state.correctAnswers + 1})
+          const correctAnswers = this.state.correctIndexes;
+          correctAnswers.push(this.state.currentIndex);
+          this.setState({correctAnswers: this.state.correctAnswers + 1, correctIndexes: correctAnswers})
         }
       } else {
         if(/\s+$/.test(this.state.imageAnswers[this.state.currentIndex])) {
           userAnswer += ' ';
         }
         if(userAnswer === this.state.imageAnswers[this.state.currentIndex]) {
-          this.setState({correctAnswers: this.state.correctAnswers + 1})
+          const correctAnswers = this.state.correctIndexes;
+          correctAnswers.push(this.state.currentIndex);
+          this.setState({correctAnswers: this.state.correctAnswers + 1, correctIndexes: correctAnswers})
         }
       }
       const select = document.querySelector('.custom-select');
@@ -162,11 +168,15 @@ export default class Test extends Component {
     } else {
       const userAnswer = answer;
       if(userAnswer === this.state.answers[this.state.currentIndex]) {
-        this.setState({correctAnswers: this.state.correctAnswers + 1}, () => {
+        let correctAnswerss = this.state.correctIndexes;
+        correctAnswerss.push(this.state.currentIndex);
+        this.setState({correctAnswers: this.state.correctAnswers + 1, correctIndexes: correctAnswerss}, () => {
+          console.log(this.state.correctIndexes)
           const output = `
             <h2>You finished, ${this.state.username}!<br/><br />You got ${this.state.correctAnswers}/${this.state.length} </h2><br />
             `;
           document.querySelector('.info').innerHTML = output;
+          this.printTheAnswersAtLast();
           document.querySelector('.info').style.color = 'white';
           if(this.state.username !== "Guest") {
             //console.log(`https://simpleosbackend.herokuapp.com/users/addTest/${this.state.username}/${this.state.test_id}`)
@@ -179,16 +189,17 @@ export default class Test extends Component {
       } else {
         let result;
         const half = this.state.questions.length / 2;
-        alert(half);
         if(this.state.correctAnswers < half) {
           result = 'failed';
         } else {
           result = 'passed';
         }
+        console.log(this.state.correctIndexes)
         const output = `
         <h2>You ${result} the test, ${this.state.username}!<br/><br />You got ${this.state.correctAnswers}/${this.state.length} </h2><br />
         `;
         document.querySelector('.info').innerHTML = output;
+        this.printTheAnswersAtLast();
         if(this.state.username !== "Guest" && !this.state.quited) {
           //console.log(`https://simpleosbackend.herokuapp.com/users/addTest/${this.state.username}/${this.state.test_id}`)
           fetch(`https://simplyopensource.in:5000/users/addTest/${localStorage.getItem('user_id')}/${this.state.test_id}`, {
@@ -207,9 +218,10 @@ export default class Test extends Component {
   }
 
   componentDidMount() {
-    const time = window.prompt('Enter the length of the test:')
-    if(time > 0) {
-      this.setState({timeLeft: time * 60})
+    const time = window.prompt('Enter the minutes you have to attend the test:');
+    const answers = window.prompt('Enter the number of questions you want to attend: ');
+    if(time > 0 && answers > 0) {
+      this.setState({timeLeft: time * 60, userInput: answers})
     } else {
       alert('Time not valid, the length of the test set to default!')
     }
@@ -249,6 +261,10 @@ export default class Test extends Component {
             </center>`;
               this.setTheSelect(0);
             });
+            alert(1)
+            if(this.state.userInput <= this.state.length && this.state.userInput > 0) {
+              this.setState({length: this.state.userInput})
+            } 
           }
         } else {
           if(this.state.imageQuestionsLength > 0) {
@@ -263,6 +279,7 @@ export default class Test extends Component {
             </center>`;
             this.setTheSelect(0); 
           }
+          //alert(1)
         }
       })
     })
@@ -302,11 +319,14 @@ export default class Test extends Component {
             const question = document.querySelector('.question');
             question.innerHTML = `${this.state.questions[this.state.currentIndex]}`;
           }
+          this.shuffle(this.state.answers, this.state.questions);
+          if(this.state.userInput <= this.state.length && this.state.userInput > 0) {
+            this.setState({length: this.state.userInput})
+          } 
         });
       }
     })
     .catch(err => console.log(err));
-
     setInterval(() => {
       if(this.state.timeLeft === 0 && this.statecurrentIndex === this.state.length - 1) {
         this.quit();
@@ -331,6 +351,42 @@ export default class Test extends Component {
         }); 
       }
     }, 1000);
+  }
+
+  shuffle = (array, array1) => {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+    var currentIndex1 = array1.length, temporaryValue1;
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      currentIndex1 -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+      temporaryValue1 = array1[currentIndex];
+      array1[currentIndex] = array1[randomIndex];
+      array1[randomIndex] = temporaryValue1;
+    }
+    this.setState({answers: array, questions: array1})
+  }
+
+  printTheAnswersAtLast = () => {
+    let output = '<center>';
+    for(let i = 0; i < this.state.length; i++) {
+      if(this.state.correctIndexes.includes(i)) {
+        output += `<h3 style="color: #97c14b">Answer ${i + 1} is correct</h3>`;
+      } else {
+        output += `<h3 style="color: red">Answer ${i + 1} is wrong</h3>`;
+      }
+    }
+    output += '</center>'
+    document.querySelector('.info').innerHTML += output;
+    console.log(output)
   }
   render() {
     return (
