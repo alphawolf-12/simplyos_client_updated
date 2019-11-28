@@ -15,7 +15,9 @@ import Update from './components/Update';
 import MyReviews from './components/MyReviews';
 import Review from './components/Review';
 import UpdateReview from './components/UpdateReview';
-import Navbar from './components/Navbar';
+import UpdateHome from './update_components/Home.update';
+import UserInformation from './components/UserInformation.admin';
+import UpdateTestUpdate from './update_components/UpdateTest.update'; 
 import './App.css';
 
 class App extends Component {
@@ -37,6 +39,9 @@ class App extends Component {
             <Route path="/review/:post_id" exact component={Review} />
             <Route path="/reviews/:user_id" exact component={MyReviews} />
             <Route path="/reviews/update/:review_id" exact component={UpdateReview} />
+            <Route path="/admin/users" exact component={UserInformation} />
+            <Route path="/admin/update" exact component={UpdateHome} />
+            <Route path='/admin/update/:id' exact component={UpdateTestUpdate} />
           </Switch>
         </div>
       </Router>

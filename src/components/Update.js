@@ -66,11 +66,11 @@ export default class Update extends Component {
                 <div className="container" style={{marginTop: 20}}>
                     <form onSubmit={this.onSubmit}>
                         <h3>Certifications</h3>
-                        <textarea disabled={this.state.disabled}  id="certifications" className="form-control" style={{marginBottom: 15, color: 'black', border: '1px solid black'}}></textarea>
+                        <textarea disabled={this.state.disabled}  id="certifications" className="form-control" style={{marginBottom: 15, color: 'black', borderWidth: "1px"}}></textarea>
                         <h3>Qualifications</h3>
-                        <textarea disabled={this.state.disabled} id="qualifications" className="form-control" style={{marginBottom: 15}}></textarea>
+                        <textarea disabled={this.state.disabled} id="qualifications" className="form-control" style={{marginBottom: 15, borderWidth: "1px"}}></textarea>
                         <h3>Organization</h3>
-                        <input disabled={this.state.disabled} id="organization" type="text" className="form-control" style={{marginBottom: 15}} />
+                        <input disabled={this.state.disabled} id="organization" type="text" className="form-control" style={{marginBottom: 15, borderWidth: "1px"}} />
                         <div className="myAlert">
                             <h3 className="myAlertText">Every field should have at least 4 characters!</h3>
                         </div>
