@@ -59,6 +59,22 @@ export default class Insert extends Component {
         document.getElementById('tests_select').innerHTML = output;
         })
         .catch(res => console.log(res))
+        document.querySelector('.myForm3').addEventListener('submit', (e) => {
+            const title = document.getElementById('updated_title_input').value;
+            const id = document.getElementById('tests_select').options[document.getElementById('tests_select').selectedIndex].value;
+            if(title.length > 1) {
+              if(window.confirm('Are you sure?')) {
+                fetch(`https://simplyopensource.in:5000/tests/update/${id}/${title}`, {
+                  method: 'POST'
+                })
+                .res(d => alert('Title Updated!'))
+                .catch(e => alert(e));
+              }
+            } else {
+              alert('Title is too short!')
+            }
+            e.preventDefault()
+          })
     }
     render() {
         return (
@@ -107,6 +123,15 @@ export default class Insert extends Component {
                         <input className="form-control" id="category_name" placeholder="Category Name: " />
                         <br />
                         <input type="submit" value="Submit" className="btn btn-primary" style={{width: '100%'}} />
+                    </form>
+                    <br /><hr />
+                    <h1>3. Update the test title</h1>
+                    <form class="myForm3">
+                        <select class="form-control" id="tests_select"></select>
+                        <br />
+                        <input type="text" id="updated_title_input" placeholder="Title: " class="form-control" />
+                        <br />
+                        <input type="submit" class="btn btn-primary" style={{width: '100%'}} value="Update" />
                     </form>
                     <br /><br />
                 </div>
