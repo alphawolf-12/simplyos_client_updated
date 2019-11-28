@@ -17,7 +17,8 @@ import Review from './components/Review';
 import UpdateReview from './components/UpdateReview';
 import UpdateHome from './update_components/Home.update';
 import UserInformation from './components/UserInformation.admin';
-import UpdateTestUpdate from './update_components/UpdateTest.update'; 
+import UpdateTestUpdate from './update_components/UpdateTest.update';
+import InsertTest from './update_components/Insert.admin'; 
 import './App.css';
 
 class App extends Component {
@@ -42,6 +43,7 @@ class App extends Component {
             <Route path="/admin/users" exact component={UserInformation} />
             <Route path="/admin/update" exact component={UpdateHome} />
             <Route path='/admin/update/:id' exact component={UpdateTestUpdate} />
+            <Route path='/admin/insert/' exact component={InsertTest} />
           </Switch>
         </div>
       </Router>
