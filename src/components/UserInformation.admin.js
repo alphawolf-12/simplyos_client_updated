@@ -11,7 +11,7 @@ export default class UserInformation extends Component {
     }
 
     componentDidMount() {
-        fetch('https://simplyopensource.in:5500/users')
+        fetch('https://simplyopensource.in:5000/users')
         .then(err => err.json())
         .then(d => this.setState({users: d}))
         .catch(err => console.error(err))
