@@ -382,9 +382,9 @@ export default class Test extends Component {
     if(this.state.printIndex === 0) {
       for(let i = 0; i < this.state.length; i++) {
         if(this.state.correctIndexes.includes(i)) {
-          output += `<h3 style="color: #97c14b">Answer ${i + 1} is correct</h3>`;
+          output += `<h3 style="color: #97c14b">Answer ${i + 1} is correct, ${this.state.answers[i]}</h3>`;
         } else {
-          output += `<h3 style="color: red">Answer ${i + 1} is wrong</h3>`;
+          output += `<h3 style="color: red">Answer ${i + 1} is wrong. The correct answer is ${this.state.answers[i]}</h3>`;
         }
       }
     } else {
