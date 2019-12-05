@@ -9,6 +9,7 @@ export default class Test extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      printIndex: 0,
       test_id: props.match.params.test_id,
       test_name: props.match.params.test_name,
       questions: [],
@@ -212,7 +213,7 @@ export default class Test extends Component {
   }
 
   quit = () => {
-    this.setState({currentIndex: this.state.length - 1, quited: true}, () => {
+    this.setState({currentIndex: this.state.length - 1, quited: true, printIndex: this.state.currentIndex}, () => {
       this.changeQuestion();
     });
   }
@@ -263,7 +264,6 @@ export default class Test extends Component {
             </center>`;
               this.setTheSelect(0);
             });
-            alert(1)
             if(this.state.userInput <= this.state.length && this.state.userInput > 0) {
               this.setState({length: this.state.userInput})
             } 
@@ -281,7 +281,6 @@ export default class Test extends Component {
             </center>`;
             this.setTheSelect(0); 
           }
-          //alert(1)
         }
       })
     })
@@ -380,13 +379,24 @@ export default class Test extends Component {
 
   printTheAnswersAtLast = () => {
     let output = '<center>';
-    for(let i = 0; i < this.state.length; i++) {
-      if(this.state.correctIndexes.includes(i)) {
-        output += `<h3 style="color: #97c14b">Answer ${i + 1} is correct</h3>`;
-      } else {
-        output += `<h3 style="color: red">Answer ${i + 1} is wrong</h3>`;
+    if(this.state.printIndex === 0) {
+      for(let i = 0; i < this.state.length; i++) {
+        if(this.state.correctIndexes.includes(i)) {
+          output += `<h3 style="color: #97c14b">Answer ${i + 1} is correct</h3>`;
+        } else {
+          output += `<h3 style="color: red">Answer ${i + 1} is wrong</h3>`;
+        }
+      }
+    } else {
+      for(let i = 0; i < this.state.printIndex; i++) {
+        if(this.state.correctIndexes.includes(i)) {
+          output += `<h3 style="color: #97c14b">Answer ${i + 1} is correct</h3>`;
+        } else {
+          output += `<h3 style="color: red">Answer ${i + 1} is wrong</h3>`;
+        }
       }
     }
+    
     output += '</center>'
     document.querySelector('.info').innerHTML += output;
     console.log(output)
