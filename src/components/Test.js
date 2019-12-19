@@ -195,10 +195,15 @@ export default class Test extends Component {
         } else {
           result = 'passed';
         }
-        console.log(this.state.correctIndexes)
-        const output = `
-        <h2>You ${result} the test, ${this.state.username}!<br/><br />You got ${this.state.correctAnswers}/${this.state.length} </h2><br />
-        `;
+        let output;
+        if(this.state.username === "Guest") {
+          output = `<h2><a href="https://simplyopensource.in/login" style="color: gray; float: right">Log in to try the full exam</a>You ${result} the test, ${this.state.username}!<br/><br />You got ${this.state.correctAnswers}/${this.state.length}<br /></h2><br />
+          `;
+        } else {
+          output = `
+          <h2>You ${result} the test, ${this.state.username}!<br/><br />You got ${this.state.correctAnswers}/${this.state.length} </h2><br />
+          `;
+        }
         document.querySelector('.info').innerHTML = output;
         this.printTheAnswersAtLast();
         if(this.state.username !== "Guest" && !this.state.quited) {
