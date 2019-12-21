@@ -26,8 +26,8 @@ export default class Categories extends Component {
   render() {
     const output = this.state.categories.map((category, i) => (
       <Link to={'/tests/' + category._id + '/' + category.name} id={i}>
-        <div className="category">
-          <h2 style={{fontFamily: 'Lucida Sans'}}>{category.name}</h2>
+        <div className="category" itemScope>
+          <h2 style={{fontFamily: 'Lucida Sans'}} itemProp="name">{category.name}</h2>
         </div>
       </Link>
     ))

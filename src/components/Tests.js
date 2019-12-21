@@ -65,19 +65,19 @@ export default class Tests extends Component {
         }
         return (
           <Link to={'/test/' + test._id + "/" + test.title} key={i}>
-            <div className={"test" + updateAttr}>
+            <div className={"test" + updateAttr} itemScope>
               <h5 style={{float: 'right'}}>{output}</h5>
               <br />
-              <h2 style={{fontFamily: 'Lucida Sans'}}>{test.title}<br /></h2>
+              <h2 style={{fontFamily: 'Lucida Sans'}} itemProp="name">{test.title}<br /></h2>
             </div>
           </Link>
       )
       } else {
         return (
           <Link to={'/test/' + test._id + "/" + test.title} key={i}>
-            <div className="test">
+            <div className="test" itemScope>
               <br />
-              <h2 style={{fontFamily: 'Lucida Sans'}}>{test.title}{updateValue}</h2>
+              <h2 style={{fontFamily: 'Lucida Sans'}} itemProp="name">{test.title}{updateValue}</h2>
             </div>
           </Link>
       )
