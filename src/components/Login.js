@@ -21,6 +21,7 @@ export default class Login extends Component {
       let configData = JSON.parse(config.Config);
       let serverUrl = configData.serverUrl;
       let email_id = response.Rt.Au;
+      console.log(response);
       let username = email_id.substring(0, email_id.indexOf('@')); 
       localStorage.setItem("username", username);
       localStorage.getItem("email", email_id);
