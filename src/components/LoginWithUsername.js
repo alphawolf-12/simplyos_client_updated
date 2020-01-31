@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Cookies from 'universal-cookie';
 import {Link} from 'react-router-dom';
 import config from '../webpack.config';
 import './style/login.css';
@@ -24,7 +23,6 @@ export default class LoginWithUsername extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const cookies = new Cookies();
     let configData = JSON.parse(config.Config);
     let serverUrl = configData.serverUrl ; 
     const username = document.getElementById('username').value;
