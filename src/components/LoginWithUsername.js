@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import Cookies from 'universal-cookie';
 import {Link} from 'react-router-dom';
+import config from '../webpack.config';
 import './style/login.css';
 import { Helmet } from 'react-helmet'
 
@@ -9,44 +11,53 @@ export default class LoginWithUsername extends Component {
 
     this.state = {
         users: [],
-        disabled: "disabled"
+       
     }
   }
 
   componentDidMount() {
+    console.log("..", localStorage.getItem('username'));
       if(localStorage.getItem('username')) {
-        window.location.href = '/';
+        //window.location.href = '/';
       }
-      fetch('https://simplyopensource.in:5000/users')
-      .then(res => res.json())
-      .then(data => {
-        this.setState({users: data});
-        this.setState({disabled: ""})
-      })
-      .catch(err => console.log(err));
   }
 
   onSubmit = (e) => {
     e.preventDefault();
+    const cookies = new Cookies();
+    let configData = JSON.parse(config.Config);
+    let serverUrl = configData.serverUrl ; 
     const username = document.getElementById('username').value;
-    let user_id = '';
     const password = document.getElementById('password').value;
-    let correct = false;
-    if(username.trim().length > 3 && password.trim().length > 3) {
-      this.state.users.forEach(user => {
-        if(user.username === username && user.password === password) {
-          correct = true;
-          user_id = user._id;
-        }
-      });
-      if(correct) {
-        this.afterLogin(username, user_id);
-      } else {
+    var data = new FormData();
+    const datael = {
+      "username": username,
+      "pass": password
+    }
+
+    data.append("jsonData", JSON.stringify(datael));
+
+    fetch(serverUrl + 'user/validate',{
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(datael),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      if (data.login === true) {
+        this.afterLogin(data.data_info.username, data.data_info.id);
+      }
+      else {
         this.showAlert("Please enter a valid user!")
       }
-    } else {
-      this.showAlert("Please enter a valid user!")
-    }
+      //
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+  });
   }
 
   afterLogin = (username, id) => {
@@ -75,9 +86,9 @@ export default class LoginWithUsername extends Component {
         <div className="container" style={{marginTop: 20}}>
           <form onSubmit={this.onSubmit}>
             <h3 style={{fontFamily: 'Lucida Sans'}}>Username: </h3>
-            <input disabled={this.state.disabled} id="username" type="text" className="form-control" style={{marginBottom: 15}} />
+            <input disabled={this.state.disabled} required id="username" type="text" className="form-control" style={{marginBottom: 15}} />
             <h3 style={{fontFamily: 'Lucida Sans'}}>Password: </h3>
-            <input disabled={this.state.disabled}  id="password" type="password" className="form-control" style={{marginBottom: 15}} />
+            <input disabled={this.state.disabled}  required id="password" type="password" className="form-control" style={{marginBottom: 15}} />
             <input disabled={this.state.disabled}  type="submit" className="btn btn-primary" style={{width: "100%"}} />
             <br /><br />
             <Link to={"/signup"} className="create_account_link">

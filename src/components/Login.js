@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GoogleLogin from 'react-google-login';
 import {Link} from 'react-router-dom';
+import config from '../webpack.config';
 import './style/login.css';
 import { Helmet } from 'react-helmet'
 
@@ -17,11 +18,17 @@ export default class Login extends Component {
 
   render() {
     const responseGoogle = (response) => {
-      localStorage.setItem("username", response.w3.ig);
-      localStorage.getItem("email", response.w3.U3);
-      fetch('https://simplyopensource.in:5000/user/username/' + response.w3.ig)
+      let configData = JSON.parse(config.Config);
+      let serverUrl = configData.serverUrl;
+      console.log();
+      let email_id = response.Rt.Au;
+      let username = email_id.substring(0, email_id.indexOf('@')); 
+      localStorage.setItem("username", username);
+      localStorage.getItem("email", email_id);
+      fetch(serverUrl + 'user/username/' + username)
       .then(res => res.json())
       .then(data => {
+        console.log("ff");
         if(data != null && data != undefined && data != []) {
           if(data._id != null && data._id != undefined) {
             localStorage.setItem('user_id', data._id);

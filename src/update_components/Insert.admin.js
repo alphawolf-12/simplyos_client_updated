@@ -75,6 +75,10 @@ export default class Insert extends Component {
             }
             e.preventDefault()
           })
+          document.querySelector('.myForm4').addEventListener('submit', (e) => {
+             console.log("fff");   
+
+          }); 
     }
     render() {
         return (
@@ -127,13 +131,21 @@ export default class Insert extends Component {
                     <br /><hr />
                     <h1>3. Update the test title</h1>
                     <form class="myForm3">
-                        <select class="form-control" id="tests_select"></select>
+                        <select className="form-control" id="tests_select"></select>
                         <br />
                         <input type="text" id="updated_title_input" placeholder="Title: " class="form-control" />
                         <br />
                         <input type="submit" class="btn btn-primary" style={{width: '100%'}} value="Update" />
                     </form>
                     <br /><br />
+                    <h1>3. Meta information</h1>
+                    <form className="myForm4">
+                        <input className="form-control" id="Keywords"></input>
+                        <br />
+                        <input type="textarea" id="metaDesc" placeholder="Description: " class="form-control" />
+                        <br />
+                        <input type="submit" class="btn btn-primary" style={{width: '100%'}} value="Update" />
+                    </form>
                 </div>
             </div>
         )
