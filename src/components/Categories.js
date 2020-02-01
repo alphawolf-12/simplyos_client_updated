@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./style/categories.css";
 import {Link} from 'react-router-dom';
+import config from '../webpack.config';
 import Navbar from './Navbar'
 import { Helmet } from 'react-helmet';
 
@@ -13,7 +14,9 @@ export default class Categories extends Component {
   }
 
   componentDidMount() {
-    fetch('https://simplyopensource.in:5000/categories')
+    let configData = JSON.parse(config.Config);
+    let serverUrl = configData.serverUrl ; 
+    fetch(serverUrl + 'categories')
     .then(res => res.json())
     .then(data => {
       this.setState({categories: data})

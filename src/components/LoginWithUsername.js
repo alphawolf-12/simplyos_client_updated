@@ -15,9 +15,8 @@ export default class LoginWithUsername extends Component {
   }
 
   componentDidMount() {
-    console.log("..", localStorage.getItem('username'));
       if(localStorage.getItem('username')) {
-        //window.location.href = '/';
+        window.location.href = '/';
       }
   }
 
