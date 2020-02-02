@@ -151,7 +151,7 @@ class InserMeta extends Component {
           <label>Page Description </label>
           <textarea name="description" required="required" className="metaDescription form-control" value={this.state.description} onChange={this.handleChange} ></textarea>
         </div>  
-        <button type="submit" class="btn btn-primary">{this.state.buttonText}</button>
+        <button type="submit" className="btn btn-primary">{this.state.buttonText}</button>
         </form>
       </div>
         </div>
