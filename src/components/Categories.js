@@ -37,9 +37,6 @@ export default class Categories extends Component {
     return (
       <div className="categories_list">
         <Navbar />
-        <Helmet>
-          <title>{ 'Categories' }</title>
-        </Helmet>
         <div className="tests_header">
             <h1>Categories</h1>
           </div>

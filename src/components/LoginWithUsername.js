@@ -22,7 +22,7 @@ export default class LoginWithUsername extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    let configData = JSON.parse(config.Config);
+    const configData = JSON.parse(config.Config);
     let serverUrl = configData.serverUrl ; 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -45,7 +45,7 @@ export default class LoginWithUsername extends Component {
     .then((data) => {
       console.log(data);
       if (data.login === true) {
-        this.afterLogin(data.data_info.username, data.data_info.id);
+        this.afterLogin(data.data_info.username, data.data_info.id, password);
       }
       else {
         this.showAlert("Please enter a valid user!")
@@ -57,9 +57,12 @@ export default class LoginWithUsername extends Component {
   });
   }
 
-  afterLogin = (username, id) => {
+  afterLogin = (username, id, password) => {
+    let authdata;
     localStorage.setItem("username", username);
     localStorage.setItem("user_id", id);
+    authdata = window.btoa(username + ':' + password);
+    localStorage.setItem("user_auth", JSON.stringify(authdata));
     window.location.href = '/';
 }
 

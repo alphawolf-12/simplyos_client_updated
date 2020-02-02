@@ -29,6 +29,7 @@ export default class Login extends Component {
       .then(data => {
         if(data != null && data != undefined && data != []) {
           if(data._id != null && data._id != undefined) {
+            //user.authdata = window.btoa(username + ':' + password);
             localStorage.setItem('user_id', data._id);
           }
         }
