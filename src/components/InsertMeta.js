@@ -15,6 +15,7 @@ class InserMeta extends Component {
       description : '',
       newPage : true,
       buttonText : 'Save',
+      access : true,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,7 +28,9 @@ class InserMeta extends Component {
     let serverUrl = configData.serverUrl ; 
     
     if (!localStorage.getItem('username')) {
-      window.location.href = '/user/login';
+      //window.location.href = '/user/login';
+      this.setState({authorization:''});
+      this.setState({'access':false});
     }
     this.setState({authorization:authHeader()});
     fetch(serverUrl + 'getpages')
@@ -104,7 +107,7 @@ class InserMeta extends Component {
   }
 
   render() {
-    if (!this.state.authorization) {
+    if (!this.state.authorization || this.state.access === false) {
       return (
         <Access/>
       );
