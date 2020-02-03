@@ -60,7 +60,7 @@ class InserMeta extends Component {
           if (response.status === true && response.data.meta_info.data) {
             let description =  JSON.parse(String.fromCharCode.apply(null, new Uint16Array(response.data.meta_info.data)));
             this.setState({
-              'path' : response.data.page_path,
+              'path' : decodeURI(response.data.page_path),
               'title' : response.data.title,
               'keyword' : response.data.keyword,
               'description' : description.des
@@ -86,7 +86,7 @@ class InserMeta extends Component {
     const configData = JSON.parse(config.Config);
     let serverUrl = configData.serverUrl ; 
     const postData = {
-      'page_path' : this.state.path,
+      'page_path' : decodeURI(this.state.path),
       'title' : this.state.title,
       'keyword' :  this.state.keyword,
       'meta_info' : JSON.stringify({'des': this.state.description})
