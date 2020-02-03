@@ -49,7 +49,9 @@ class App extends Component {
     const configData = JSON.parse(config.Config);
     let serverUrl = configData.serverUrl ; 
     let path = window.location.pathname.replace('/', '');
-    
+    if (path === '') {
+      path = '/';
+    }
     fetch(serverUrl + 'getmeta?page=' + path)
     .then(res => res.json())
     .then((response) => {
