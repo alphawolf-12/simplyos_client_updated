@@ -52,6 +52,7 @@ class App extends Component {
     if (path === '') {
       path = '/';
     }
+    
     fetch(serverUrl + 'getmeta?page=' + path)
     .then(res => res.json())
     .then((response) => {
