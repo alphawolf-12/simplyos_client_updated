@@ -68,16 +68,16 @@ class App extends Component {
 
   render() {
     if (this.state.meta_load === false) {
-      return null;
+      //return null;
     }
     
     return (
       <Router>
         <div className="App" style={{minHeight: "100vh", overflowX: "hidden", overflowY: "auto"}}>
         <Helmet>
-          <title> {this.state.meta_data.title } | simplyopensource </title>
+          {/* <title> {this.state.meta_data.title } | simplyopensource </title>
           <meta name="description" content={this.state.meta_data.meta_info.des}/>
-          <meta name="keywords" content={this.state.meta_data.keyword }/>
+          <meta name="keywords" content={this.state.meta_data.keyword }/> */}
           
         </Helmet>
           <Switch>
