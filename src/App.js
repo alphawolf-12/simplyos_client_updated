@@ -45,26 +45,26 @@ class App extends Component {
 
   }
   
-  componentDidMount() {
-    const configData = JSON.parse(config.Config);
-    let serverUrl = configData.serverUrl ; 
-    let path = window.location.pathname.replace('/', '');
-    if (path === '') {
-      path = '/';
-    }
+  // componentDidMount() {
+  //   const configData = JSON.parse(config.Config);
+  //   let serverUrl = configData.serverUrl ; 
+  //   let path = window.location.pathname.replace('/', '');
+  //   if (path === '') {
+  //     path = '/';
+  //   }
     
-    fetch(serverUrl + 'getmeta?page=' + path)
-    .then(res => res.json())
-    .then((response) => {
-      if (response.status === true && response.data.meta_info.data) {
-        let description =  String.fromCharCode.apply(null, new Uint16Array(response.data.meta_info.data));
-        response.data.meta_info = JSON.parse(description);
-        this.setState({'meta_data':response.data});
-      }
-      this.setState({meta_load : true});
+  //   fetch(serverUrl + 'getmeta?page=' + path)
+  //   .then(res => res.json())
+  //   .then((response) => {
+  //     if (response.status === true && response.data.meta_info.data) {
+  //       let description =  String.fromCharCode.apply(null, new Uint16Array(response.data.meta_info.data));
+  //       response.data.meta_info = JSON.parse(description);
+  //       this.setState({'meta_data':response.data});
+  //     }
+  //     this.setState({meta_load : true});
        
-    });
-  }
+  //   });
+  // }
 
   render() {
     if (this.state.meta_load === false) {

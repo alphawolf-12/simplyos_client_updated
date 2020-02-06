@@ -13,7 +13,7 @@ export default class MyReviews extends Component {
         }
     }
     componentDidMount() {
-        fetch('https://simplyopensource.in:5000/reviews/user/' + this.state.user_id)
+        fetch('/api/reviews/user/' + this.state.user_id)
         .then(res => res.json())
         .then(res => {
             this.setState({user_reviews: res}, () => {
@@ -26,7 +26,7 @@ export default class MyReviews extends Component {
     ///users/title/:id
     fetchReviews = () => {
         this.state.user_reviews.forEach(review => {
-            fetch('https://simplyopensource.in:5000/users/title/' + review.post_id)
+            fetch('/api/users/title/' + review.post_id)
             .then(res => res.json())
             .then(data => {
                 let posts = this.state.posts;

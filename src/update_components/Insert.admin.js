@@ -4,7 +4,7 @@ import './style.css';
 export default class Insert extends Component {
     componentDidMount() {
         const categories = document.getElementById('options');
-        fetch('https://simplyopensource.in:5000/categories')
+        fetch('/api/categories')
         .then(res => res.json())
         .then(data => {
         let html = '';
@@ -27,7 +27,7 @@ export default class Insert extends Component {
         console.log(title + " " + categoryId + " " + pdfName);
         if(title.length > 0 && pdfName.length > 0 && categoryId.length > 0) {
             alert('PDF is added!');
-            fetch(`https://simplyopensource.in:5000/tests/add/${title}/${pdfName}/${categoryId}/${header}`, {
+            fetch(`/api/tests/add/${title}/${pdfName}/${categoryId}/${header}`, {
             method: "POST"
             }).then(res => alert('Added'));
         } else {
@@ -39,7 +39,7 @@ export default class Insert extends Component {
         e.preventDefault();
         const category_name = document.getElementById('category_name').value;
         if(category_name.length > 2) {
-            fetch(`https://simplyopensource.in:5000/category/add/${category_name}`, {
+            fetch(`/api/category/add/${category_name}`, {
             method: "POST"
             }).then(res => alert('Added'));
         } else {
@@ -47,7 +47,7 @@ export default class Insert extends Component {
         }
         });
 
-        fetch('https://simplyopensource.in:5000/tests')
+        fetch('/api/tests')
         .then(res => res.json())
         .then(data => {
         let output = '' 
@@ -64,7 +64,7 @@ export default class Insert extends Component {
             const id = document.getElementById('tests_select').options[document.getElementById('tests_select').selectedIndex].value;
             if(title.length > 1) {
               if(window.confirm('Are you sure?')) {
-                fetch(`https://simplyopensource.in:5000/tests/update/${id}/${title}`, {
+                fetch(`/api/tests/update/${id}/${title}`, {
                   method: 'POST'
                 })
                 .res(d => alert('Title Updated!'))
@@ -89,7 +89,7 @@ export default class Insert extends Component {
                 <div className="container">
                     <br />
                     <h1>Upload pdf to server</h1>
-                    <form style={{textAlign: 'center'}} method="POST" action="https://simplyopensource.in:5000/upload" enctype="multipart/form-data">
+                    <form style={{textAlign: 'center'}} method="POST" action="/api/upload" enctype="multipart/form-data">
                         <input type="file" name="avatar" />  
                         <br /><br />
                         <input className="btn btn-primary" style={{width: '100%'}} type="submit" value="Upload" />

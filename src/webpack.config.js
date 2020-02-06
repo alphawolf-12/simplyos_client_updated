@@ -1,8 +1,8 @@
 let config = {
     'Config': JSON.stringify(process.env.NODE_ENV === 'development' ? {
-        serverUrl: "https://simplyopensource.in:5000/"
+        serverUrl: "http://localhost:5500/api/"
       } : {
-        serverUrl: "https://simplyopensource.in:5000/"  
+        serverUrl: "http://localhost:5500/api/"
       })
   }
 console.log(process.env.NODE_ENV);

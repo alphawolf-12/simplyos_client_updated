@@ -5,7 +5,7 @@ export default class Delete extends Component {
     componentDidMount() {
         const categories = document.getElementById('categories');
         const tests = document.getElementById('tests');
-        fetch('https://simplyopensource.in:5000/categories')
+        fetch('/api/categories')
         .then(res => res.json())
         .then(data => {
         let html = '';
@@ -19,7 +19,7 @@ export default class Delete extends Component {
         })
         .catch(() => alert('Can\'t get categories from server!'));
 
-        fetch('https://simplyopensource.in:5000/tests')
+        fetch('/api/tests')
         .then(res => res.json())
         .then(data => {
         let html = '';
@@ -35,7 +35,7 @@ export default class Delete extends Component {
 
         document.getElementById('del_cat').addEventListener('click', () => {
         if(window.confirm('Are you sure?')) {
-            fetch(`https://simplyopensource.in:5000/deleteCategory/${categories.options[categories.selectedIndex].value}`, {
+            fetch(`/api/deleteCategory/${categories.options[categories.selectedIndex].value}`, {
             method: "POST"
             }).then(res => {
                 alert('Category Deleted');
@@ -46,7 +46,7 @@ export default class Delete extends Component {
 
         document.getElementById('del_test').addEventListener('click', () => {
         if(window.confirm('Are you sure?')) {
-            fetch(`https://simplyopensource.in:5000/deleteTest/${tests.options[tests.selectedIndex].value}`, {
+            fetch(`/api/deleteTest/${tests.options[tests.selectedIndex].value}`, {
             method: "POST"
             }).then(res => {
                 window.location.reload();

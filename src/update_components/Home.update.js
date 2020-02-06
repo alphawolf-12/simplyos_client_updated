@@ -9,7 +9,7 @@ export default class Home extends Component {
         }
     }
     componentDidMount() {
-        fetch('https://simplyopensource.in:5000/tests')
+        fetch('/api/tests')
         .then(res => res.json())
         .then(data => {
             this.setState({tests: data})

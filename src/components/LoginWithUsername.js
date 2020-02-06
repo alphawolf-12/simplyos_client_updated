@@ -34,7 +34,7 @@ export default class LoginWithUsername extends Component {
 
     data.append("jsonData", JSON.stringify(datael));
 
-    fetch(serverUrl + 'user/validate',{
+    fetch('/api/user/validate',{
       method: 'POST',
       headers: {
         "Content-Type": "application/json"

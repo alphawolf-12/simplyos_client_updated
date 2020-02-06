@@ -181,7 +181,7 @@ export default class Test extends Component {
           document.querySelector('.info').style.color = 'white';
           if(this.state.username !== "Guest") {
             //console.log(`https://simpleosbackend.herokuapp.com/users/addTest/${this.state.username}/${this.state.test_id}`)
-            fetch(`https://simplyopensource.in:5000/users/addTest/${localStorage.getItem('user_id')}/${this.state.test_id}`, {
+            fetch(`/api/users/addTest/${localStorage.getItem('user_id')}/${this.state.test_id}`, {
               method: "Post"
             })
             .then(res => res.json());
@@ -197,7 +197,7 @@ export default class Test extends Component {
         }
         let output;
         if(this.state.username === "Guest") {
-          output = `<h2><a href="https://simplyopensource.in/login" style="color: gray; float: right">Log in to try the full exam</a>You ${result} the test, ${this.state.username}!<br/><br />You got ${this.state.correctAnswers}/${this.state.length}<br /></h2><br />
+          output = `<h2><a href="/login" style="color: gray; float: right">Log in to try the full exam</a>You ${result} the test, ${this.state.username}!<br/><br />You got ${this.state.correctAnswers}/${this.state.length}<br /></h2><br />
           `;
         } else {
           output = `
@@ -208,7 +208,7 @@ export default class Test extends Component {
         this.printTheAnswersAtLast();
         if(this.state.username !== "Guest" && !this.state.quited) {
           //console.log(`https://simpleosbackend.herokuapp.com/users/addTest/${this.state.username}/${this.state.test_id}`)
-          fetch(`https://simplyopensource.in:5000/users/addTest/${localStorage.getItem('user_id')}/${this.state.test_id}`, {
+          fetch(`api/users/addTest/${localStorage.getItem('user_id')}/${this.state.test_id}`, {
             method: "Post"
           })
           .then(res => res.json());
@@ -233,7 +233,7 @@ export default class Test extends Component {
         alert('Time not valid, the length of the test set to default!')
       }
     }
-    fetch('https://simplyopensource.in:5000/imageQuestion/' + this.state.test_id)
+    fetch('/api/imageQuestion/' + this.state.test_id)
     .then(res => res.json())
     .then(data => {
       let questions = [];
@@ -289,7 +289,7 @@ export default class Test extends Component {
         }
       })
     })
-    fetch(`https://simplyopensource.in:5000/test/${this.state.test_id}`)
+    fetch(`api/test/${this.state.test_id}`)
     .then(res => res.json())
     .then(data => {
       let myData = [];

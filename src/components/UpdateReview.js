@@ -12,7 +12,7 @@ export default class MyReviews extends Component {
     }
 
     componentDidMount() {
-        fetch('https://simplyopensource.in:5000/review/reviewId/' + this.state.review_id)
+        fetch('/api/review/reviewId/' + this.state.review_id)
         .then(res => res.json())
         .then(data => {
             document.querySelector('select').selectedIndex = data.review - 1;
@@ -24,7 +24,7 @@ export default class MyReviews extends Component {
     submit = () => {
         if(!this.state.disabled) {
             const review = document.querySelector('select').value;
-            fetch(`https://simplyopensource.in:5000/reviews/update/${this.state.review_id}/${review}`, {
+            fetch(`/api/reviews/update/${this.state.review_id}/${review}`, {
                 method: 'POST'
             })
             .then(res => window.location.href = '/')
