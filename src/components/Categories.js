@@ -14,9 +14,7 @@ export default class Categories extends Component {
   }
 
   componentDidMount() {
-    let configData = JSON.parse(config.Config);
-    let serverUrl = configData.serverUrl ; 
-    fetch(serverUrl + 'categories')
+    fetch('/api/categories')
     .then(res => res.json())
     .then(data => {
       this.setState({categories: data})

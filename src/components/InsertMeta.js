@@ -26,16 +26,14 @@ class InserMeta extends Component {
   }
 
   componentDidMount() {
-    const configData = JSON.parse(config.Config);
-    let serverUrl = configData.serverUrl;
-
+    
     if (!localStorage.getItem('username')) {
       //window.location.href = '/user/login';
       this.setState({ authorization: '' });
       this.setState({ 'access': false });
     }
     this.setState({ authorization: authHeader() });
-    fetch(serverUrl + 'getpages')
+    fetch('/api/getpages')
       .then((res) => res.json())
       .then((response) => {
         this.setState({ pages: response.data });
@@ -45,9 +43,6 @@ class InserMeta extends Component {
   }
 
   handleChange(event) {
-    const configData = JSON.parse(config.Config);
-    let serverUrl = configData.serverUrl;
-
     const target = event.target;
     console.log(event.target.name);
     if (event.target.name === 'path') {
@@ -55,7 +50,7 @@ class InserMeta extends Component {
         this.setState({ 'newPage': true });
       }
       else {
-        fetch(serverUrl + 'getmeta?page=' + event.target.value)
+        fetch('/api/getmeta?page=' + event.target.value)
           .then((res) => res.json())
           .then((response) => {
             if (response.status === true && response.data.meta_info.data) {
@@ -84,9 +79,7 @@ class InserMeta extends Component {
 
   deleteButtonHandle = (event) => {
     event.preventDefault();
-    const configData = JSON.parse(config.Config);
-    let serverUrl = configData.serverUrl;
-    fetch(serverUrl + 'delete-meta/' + this.state.id, {
+    fetch('/api/delete-meta/' + this.state.id, {
       method: 'DELETE',
       headers: {
         "Content-Type": "application/json",
@@ -114,8 +107,6 @@ class InserMeta extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const configData = JSON.parse(config.Config);
-    let serverUrl = configData.serverUrl;
     const postData = {
       'page_path': decodeURI(this.state.path),
       'title': this.state.title,
@@ -123,7 +114,7 @@ class InserMeta extends Component {
       'meta_info': JSON.stringify({ 'des': this.state.description })
     };
     this.setState({ buttonText: 'Saving...' })
-    fetch(serverUrl + 'postmeta', {
+    fetch('/api/postmeta', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",

@@ -18,13 +18,11 @@ export default class Login extends Component {
 
   render() {
     const responseGoogle = (response) => {
-      let configData = JSON.parse(config.Config);
-      let serverUrl = configData.serverUrl;
       let email_id =  response.profileObj.email;
       let username = email_id.substring(0, email_id.indexOf('@')); 
       localStorage.setItem("username", username);
       localStorage.getItem("email", email_id);
-      fetch(serverUrl + 'user/username/' + username)
+      fetch('/api/user/username/' + username)
       .then(res => res.json())
       .then(data => {
         if(data != null && data != undefined && data != []) {

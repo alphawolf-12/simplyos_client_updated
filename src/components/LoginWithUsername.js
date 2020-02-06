@@ -22,8 +22,6 @@ export default class LoginWithUsername extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const configData = JSON.parse(config.Config);
-    let serverUrl = configData.serverUrl ; 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     var data = new FormData();
