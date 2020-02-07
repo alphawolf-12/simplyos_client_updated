@@ -208,7 +208,7 @@ export default class Test extends Component {
         this.printTheAnswersAtLast();
         if(this.state.username !== "Guest" && !this.state.quited) {
           //console.log(`https://simpleosbackend.herokuapp.com/users/addTest/${this.state.username}/${this.state.test_id}`)
-          fetch(`api/users/addTest/${localStorage.getItem('user_id')}/${this.state.test_id}`, {
+          fetch(`/api/users/addTest/${localStorage.getItem('user_id')}/${this.state.test_id}`, {
             method: "Post"
           })
           .then(res => res.json());
@@ -289,7 +289,7 @@ export default class Test extends Component {
         }
       })
     })
-    fetch(`api/test/${this.state.test_id}`)
+    fetch(`/api/test/${this.state.test_id}`)
     .then(res => res.json())
     .then(data => {
       let myData = [];
